@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Marketplace</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="main-page-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body class="app">
+    <header class="app-header">
+        <a href="main-page.html" class="app-header-logo">
+            <span class="app-header-logo-online">online</span><span
+                class="app-header-logo-marketplace">marketplace</span>
+        </a>
+        <div class="app-header-search">
+            <input type="text" maxlength="500" placeholder="Search items" class="app-header-search-input" />
+            <a role="button" class="app-header-search-button">Search</a>
+        </div>
+        <button class="app-header-login-button">LOG IN</button>
+        <button class="app-header-join-button">JOIN</button>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="content">
+            <h2 class="content-header">Trending Items</h2>
+            <img src="https://i.pinimg.com/564x/06/cf/72/06cf729e4eb1f0f4aae1022e5f8fb33e.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="signin-modal-wrapper">
+        <div class="signin-modal-backdrop"></div>
+        <div class="signin-modal">
+            <img src="https://i.pinimg.com/564x/9b/88/a3/9b88a3ba150a71181db5707d36e51eaf.jpg" width="282" height="462">
+            <div class="signin-modal-content">
+                <div class="modal-close-button-wrapper">
+                    <button class="modal-close-button">&times;</button>
+                </div>
+                <div class="modal-content-logo">
+                    <span class="app-header-logo-online">online</span><span
+            class="app-header-logo-marketplace">marketplace</span>
+                </div>
+                <h5 class="signin-modal-content-header">Log in to begin your treasure hunt.</h3>
+                <div class="modal-input-container">
+                    <label for="login">Login</label>
+                    <input id="login" type="text">
+                </div>
+                <div class="modal-input-container">
+                    <label for="password">Password</label>
+                    <input id="password" type="text">
+                </div>
+                <button class="modal-button">Log In</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="signup-modal-wrapper">
+        <div class="signup-modal-backdrop"></div>
+        <div class="signup-modal">
+            <img src="https://i.pinimg.com/564x/c9/64/dd/c964ddbc43616765ece1f553285c8d94.jpg" width="246" height="462">
+            <div class="signup-modal-content">
+                <div class="modal-close-button-wrapper">
+                    <button class="modal-close-button">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-content-logo">
+                    <span class="app-header-logo-online">online</span><span
+            class="app-header-logo-marketplace">marketplace</span>
+                </div>
+                <h5 class="signup-modal-content-header">Sign up and begin your treasure hunt.</h3>
+                <div class="modal-input-container">
+                    <label for="login">Login</label>
+                    <input id="login" type="text">
+                </div>
+                <div class="modal-input-container">
+                    <label for="password">Password</label>
+                    <input id="password" type="text">
+                </div>
+                <button class="modal-button">Start Now</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">&#xa9 2020 onlinemarketplace.</footer>
+
+    <script src="main-page-script.js"></script>
+</body>
+
+</html>
