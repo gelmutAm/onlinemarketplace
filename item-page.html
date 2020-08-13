@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Page</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="item-page-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body class="app">
+    <div class="app-header-wrapper">
+        <header class="app-header">
+            <a href="main-page.html" class="app-header-logo">
+                <span class="app-header-logo-online">online</span><span
+                    class="app-header-logo-marketplace">marketplace</span>
+            </a>
+            <div class="app-header-search">
+                <input type="text" maxlength="500" placeholder="Search items" class="app-header-search-input" />
+                <a role="button" class="app-header-search-button">Search</a>
+            </div>
+            <div class="app-header-buttons-container">
+                <button class="app-header-login-button">LOG IN</button>
+                <button class="app-header-join-button">JOIN</button>
+            </div>
+        </header>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="item-content">
+                <div class="item-content-image">
+                    <img src="https://i.pinimg.com/564x/0d/88/1c/0d881c3995b656505ac121a50df162e9.jpg">
+                </div>
+                <div class="item-bidding-container">
+                    <span class="item-bidding-title">David Iatesta contemporary walnut commode with three</span>
+                    <span class="item-stop-date">16h 5m 23s</span>
+                    <div class="item-bidding-content">
+                        <div class="item-bidding-content-price-bids-container">
+                            <span class="item-bidding-content-price">$260</span>
+                            <span class="item-bidding-content-bids">7 bids</span>
+                        </div>
+                        <div class="item-bidding-content-input-button-container">
+                            <div class="item-bidding-input-container">
+                                <label for="bid">your maximum bid:</label>
+                                <input type="number" id="bid">
+                            </div>
+                            <button class="item-bidding-content-bid-button">place bid</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-description">
+                <div class="item-description-container">
+                    <span class="item-description-header">description</span>
+                    <p class="item-description-p">David Iatesta contemporary walnut commode with three long drawers, raised on tapering square
+                        feet, ht. 31", wd. 36". Estate of Marilyn Ware Strasburg, PA.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="signin-modal-wrapper">
+        <div class="signin-modal-backdrop"></div>
+        <div class="signin-modal">
+            <img src="https://i.pinimg.com/564x/9b/88/a3/9b88a3ba150a71181db5707d36e51eaf.jpg" width="282" height="462">
+            <div class="signin-modal-content">
+                <div class="modal-close-button-wrapper">
+                    <button class="modal-close-button">&times;</button>
+                </div>
+                <div class="modal-content-logo">
+                    <span class="app-header-logo-online">online</span><span
+                        class="app-header-logo-marketplace">marketplace</span>
+                </div>
+                <h5 class="signin-modal-content-header">Log in to begin your treasure hunt.</h3>
+                    <div class="modal-input-container">
+                        <label for="login">Login</label>
+                        <input id="login" type="text">
+                    </div>
+                    <div class="modal-input-container">
+                        <label for="password">Password</label>
+                        <input id="password" type="text">
+                    </div>
+                    <button class="modal-button">Log In</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="signup-modal-wrapper">
+        <div class="signup-modal-backdrop"></div>
+        <div class="signup-modal">
+            <img src="https://i.pinimg.com/564x/c9/64/dd/c964ddbc43616765ece1f553285c8d94.jpg" width="246" height="462">
+            <div class="signup-modal-content">
+                <div class="modal-close-button-wrapper">
+                    <button class="modal-close-button">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-content-logo">
+                    <span class="app-header-logo-online">online</span><span
+                        class="app-header-logo-marketplace">marketplace</span>
+                </div>
+                <h5 class="signup-modal-content-header">Sign up and begin your treasure hunt.</h3>
+                    <div class="modal-input-container">
+                        <label for="login">Login</label>
+                        <input id="login" type="text">
+                    </div>
+                    <div class="modal-input-container">
+                        <label for="password">Password</label>
+                        <input id="password" type="text">
+                    </div>
+                    <button class="modal-button">Start Now</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">&#xa9; 2020 onlinemarketplace.</footer>
+
+    <script src="item-page-script.js"></script>
+</body>
+
+</html>

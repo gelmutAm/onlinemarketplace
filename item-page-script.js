@@ -27,7 +27,3 @@ $('.signin-modal-backdrop').click(() => {
 $('.signup-modal-backdrop').click(() => {
     $('.signup-modal-wrapper').fadeOut();
 })
-
-$('.item-card').click(() => {
-    window.location.href='item-page.html?id=1';
-})
