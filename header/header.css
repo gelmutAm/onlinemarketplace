@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+html {
+    height: 100%;
+}
+
+.app {
+    --app-header-border-color: #e3e3e3;
+    --app-header-logo-color: #000000;
+    --app-header-search-input: #f4f4f4;
+
+    height: 100%;
+    min-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.app-header-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--app-header-border-color);
+}
+
+.app-header {
+    width: 1109px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 0;
+    box-sizing: border-box;
+}
+
+.app-header-logo {
+    all: unset;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+    font-size: 24px;
+    color: var(--app-header-logo-color);
+}
+
+.app-header-logo:hover {
+    cursor: pointer;
+}
+
+.app-header-logo:active {
+    text-indent: unset;
+}
+
+.app-header-logo-online {
+    font-weight: bold;
+}
+
+.app-header-logo-marketplace {
+    font-weight: normal;
+}
+
+.app-header-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 10;
+    height: 40px;
+    padding: 0px 10px 0px 10px;
+    background-color: var(--app-header-search-input);
+    border: 1px solid var(--app-header-search-input);
+    box-shadow: 0 2px 4px 0 rgba(33,22,20,.2);
+}
+
+.app-header-search:focus {
+    outline: none;
+}
+
+.app-header-search:focus-within {
+    background-color: white;
+    box-shadow: 10px 0 0 white;
+    border: 1px solid #0097ba;
+}
+
+.app-header-search-input {
+    all: unset;
+    width: 100%;
+    padding-right: 10px;
+}
+
+.app-header-search-button {
+    color: #0097ba;
+}
+
+.app-header-search-button:hover {
+    cursor: pointer;
+}
+
+.app-header-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.app-header-login-button {
+    all: unset;
+    margin-right: 20px;
+    font-weight: bold;
+    color: #656565;
+    text-align: center;
+}
+
+.app-header-login-button:hover {
+    cursor: pointer;
+    color: #0097ba;
+}
+
+.app-header-join-button {
+    all: unset;
+    background-color: #0097ba;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.app-header-join-button:hover {
+    cursor: pointer;
+    background-color: #656565;
+}
+
+.app-header-account-button {
+    all: unset;
+    justify-self: flex-end;
+    color: #656565;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.app-header-account-button:hover {
+    cursor: pointer;
+    color: #0097ba;
+}
