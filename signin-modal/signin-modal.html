@@ -1,40 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In Modal</title>
-    <link rel="stylesheet" href="/normalize.css">
-    <link rel="stylesheet" href="/signin-modal/signin-modal-style.css">
-</head>
-
-<body>
-    <div class="signin-modal-backdrop"></div>
-    <div class="signin-modal">
-        <img src="https://i.pinimg.com/564x/9b/88/a3/9b88a3ba150a71181db5707d36e51eaf.jpg" width="282" height="462">
-        <div class="signin-modal-content">
-            <div class="modal-close-button-wrapper">
-                <button class="modal-close-button">&times;</button>
-            </div>
-            <div class="modal-content-logo">
-                <span class="app-header-logo-online">online</span><span
-                    class="app-header-logo-marketplace">marketplace</span>
-            </div>
-            <h5 class="signin-modal-content-header">Log in to begin your treasure hunt.</h3>
-                <div class="signin-modal-input-container">
-                    <label for="singin-login">Login</label>
-                    <input id="sigin-login" type="text" minlength="8" maxlength="20" pattern="[a-z]{4,8}">
-                </div>
-                <div class="signin-modal-input-container">
-                    <label for="signin-password">Password</label>
-                    <input id="signin-password" type="password" minlength="8" maxlength="20">
-                </div>
-                <button class="signin-modal-button">Log In</button>
+<div class="signin-modal-backdrop"></div>
+<div class="signin-modal">
+    <img src="https://i.pinimg.com/564x/9b/88/a3/9b88a3ba150a71181db5707d36e51eaf.jpg" width="282" height="462">
+    <div class="signin-modal-content">
+        <div class="modal-close-button-wrapper">
+            <button class="modal-close-button">&times;</button>
         </div>
+        <div class="modal-content-logo">
+            <span class="app-header-logo-online">online</span><span
+                class="app-header-logo-marketplace">marketplace</span>
+        </div>
+        <h5 class="signin-modal-content-header">Log in to begin your treasure hunt.</h3>
+            <div class="signin-modal-input-container">
+                <label for="singin-login">Login</label>
+                <input id="sigin-login" type="text" minlength="8" maxlength="20" pattern="[a-z]{4,8}">
+            </div>
+            <div class="signin-modal-input-container">
+                <label for="signin-password">Password</label>
+                <input id="signin-password" type="password" minlength="8" maxlength="20">
+            </div>
+            <button class="signin-modal-button">Log In</button>
     </div>
+</div>
 
-    <script src="signin-modal/signin-modal-script.js"></script>
-</body>
-
-</html>
+<script src="signin-modal/signin-modal-script.js"></script>
