@@ -44,27 +44,30 @@
                     <div class="item-info-modal-content-header-wrapper">
                         <h5 class="item-info-modal-content-header">Item Information</h3>
                     </div>
-                    <div class="item-info-modal-input-container">
-                        <label for="name">Name</label>
-                        <input id="name" type="text" minlength="10" maxlength="100">
-                    </div>
-                    <div class="item-info-modal-input-container">
-                        <label for="pic-link">Picture Link</label>
-                        <input id="pic-link" type="url" maxlength="150">
-                    </div>
-                    <div class="item-info-modal-input-container">
-                        <label for="start-price">Start Price</label>
-                        <input id="start-price" type="text" minlength="1" maxlength="10" min="1">
-                    </div>
-                    <div class="item-info-modal-input-container">
-                        <label for="stop-date">Stop Date</label>
-                        <input id="stop-date" type="datetime" minlength="17" maxlength="17">
-                    </div>
-                    <div class="item-info-modal-input-container">
-                        <label for="description">Description</label>
-                        <textarea id="description" rows="2" cols="7" minlength="20" maxlength="1000"></textarea>
-                    </div>
-                    <button class="add-item-modal-button">Add Item</button>
+
+                    <form class="add-item-form">
+                        <div class="item-info-modal-input-container">
+                            <label for="name">Name</label>
+                            <input id="name" onkeypress="resetValidity()" type="text">
+                        </div>
+                        <div class="item-info-modal-input-container">
+                            <label for="pic-link">Picture Link</label>
+                            <input id="pic-link" onkeypress="resetValidity()">
+                        </div>
+                        <div class="item-info-modal-input-container">
+                            <label for="start-price">Start Price</label>
+                            <input id="start-price" onkeypress="resetValidity()" type="text">
+                        </div>
+                        <div class="item-info-modal-input-container">
+                            <label for="stop-date">Stop Date</label>
+                            <input id="stop-date" onkeypress="resetValidity()" type="datetime">
+                        </div>
+                        <div class="item-info-modal-input-container">
+                            <label for="description">Description</label>
+                            <textarea id="description" rows="2" cols="7" onkeypress="resetValidity()"></textarea>
+                        </div>
+                        <button type="submit" class="add-item-modal-button">Add Item</button>
+                    </form>
                 </div>
             </div>
         </div>
