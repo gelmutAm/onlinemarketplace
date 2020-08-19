@@ -1,6 +1,6 @@
 const NAME_REGEX = /^[a-zA-Z ]{1,100}$/;
 const START_PRICE_REGEX = /^[1-9]{1}[0-9 ]{0,10}$/;
-const STOP_DATE_REGEX = /^$/;
+const STOP_DATE_REGEX = /^(((0[1-9]|[12]\d|3[01])[\/\.-](0[13578]|1[02])[\/\.-]((19|[2-9]\d)\d{2})\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]))|((0[1-9]|[12]\d|30)[\/\.-](0[13456789]|1[012])[\/\.-]((19|[2-9]\d)\d{2})\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]))|((0[1-9]|1\d|2[0-8])[\/\.-](02)[\/\.-]((19|[2-9]\d)\d{2})\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]))|((29)[\/\.-](02)[\/\.-]((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])))$/g;
 
 $('.add-item-form').submit(e => {
 debugger
@@ -9,7 +9,7 @@ debugger
 
     const nameMessage = 'Name can\'t be empty!';
     const startPriceMessage = 'Start Price can\'t be empty!';
-    const stopDateMessage = '';
+    const stopDateMessage = 'Stop Date format must match \'dd/MM/yyyy hh:mm:ss\'.';
 
     const nameInput = e.target[0];
     const startPriceInput = e.target[2];
@@ -40,9 +40,22 @@ function resetValidity() {
     $('#stop-date')[0].setCustomValidity('');
 }
 
+function getDate() {
+    let currentDate = new Date();
+    let day = String(currentDate.getDate()).padStart(2, '0');
+    let month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    let year = currentDate.getFullYear();
+    let hours = String(currentDate.getHours()).padStart(2, '0');
+    let minutes = String(currentDate.getMinutes()).padStart(2, '0');
+    let seconds = String(currentDate.getSeconds()).padStart(2, '0');
+    let output = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+    return output;
+}
+
 
 $('.add-item-button').click(() => {
     showModal('.item-info-modal-wrapper');
+    $('#stop-date').val(getDate());
 })
 
 $('.item-info-modal-close-button').click(() => {
