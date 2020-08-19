@@ -39,8 +39,8 @@ html {
 }
 
 .content {
-  width: 100%;
-  margin: 40px 120px;
+  width: 1109px;
+  margin: 40px 0;
 }
 
 .content-header {
@@ -62,7 +62,7 @@ html {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: calc((1109px - 120px) / 4);
+  width: calc((100% - 120px) / 4);
   height: 350px;
   margin-bottom: 40px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -563,9 +563,7 @@ template {
 }
 
 .footer {
-  width: 100%;
-  margin: 0 120px;
-  box-sizing: border-box;
+  width: 1109px;
   align-self: flex-start;
 }
 
@@ -578,12 +576,11 @@ template {
 }
 
 .app-header {
-  width: 100%;
+  width: 1109px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 13px 0;
-  margin: 0 120px;
   box-sizing: border-box;
 }
 
