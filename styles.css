@@ -1187,6 +1187,8 @@ template {
   justify-content: flex-start;
   align-items: center;
   padding: 10px 20px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
 }
 
 .signup-modal-content-header {
