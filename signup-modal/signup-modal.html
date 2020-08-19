@@ -1,4 +1,5 @@
 <div class="signup-modal-backdrop"></div>
+
 <div class="signup-modal">
     <img src="https://i.pinimg.com/564x/c9/64/dd/c964ddbc43616765ece1f553285c8d94.jpg" width="246" height="462">
     <div class="signup-modal-content">
@@ -7,19 +8,28 @@
                 <span>&times;</span>
             </button>
         </div>
+
         <div class="modal-content-logo">
             <span class="app-header-logo-online">online</span><span
                 class="app-header-logo-marketplace">marketplace</span>
         </div>
-        <h5 class="signup-modal-content-header">Sign up and begin your treasure hunt.</h3>
+
+        <h5 class="signup-modal-content-header">Sign up and begin your treasure hunt.</h5>
+
+        <form class="signup-form">
             <div class="signup-modal-input-container">
-                <label for="signup-login">Login</label>
-                <input id="signup-login" type="text" minlength="8" maxlength="20">
+                <label for="signup-login">Email</label>
+                <input id="signup-login" onkeypress="resetValidity()" type="text">
             </div>
+
             <div class="signup-modal-input-container">
                 <label for="signup-password">Password</label>
-                <input id="signup-password" type="password" minlength="8" maxlength="20">
+                <input id="signup-password" onkeypress="resetValidity()" type="password">
             </div>
-            <button class="signup-modal-button">Start Now</button>
+
+            <button type="submit" class="signup-modal-button">Start Now</button>
+        </form>
     </div>
 </div>
+
+<script src="/signup-modal/signup-modal.js"></script>
