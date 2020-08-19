@@ -20,7 +20,7 @@ $('.signup-form').submit(e => {
         hideModal('.signup-modal-wrapper');
         emailInput.value = '';
         passwordInput.value = '';
-        confirmPasswordInput = '';
+        confirmPasswordInput.value = '';
     } else {
         switch (true) {
             case !isEmailValid : emailInput.setCustomValidity(emailMessage); break;

@@ -73,6 +73,14 @@ function showModal(modalName) {
 function hideModal(modalName) {
     $('.app').css('overflow', 'auto');
     $(modalName).fadeOut();
+    clearAllInputs();
+}
+
+function clearAllInputs() {
+    var elements = document.getElementsByTagName('input');
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].value = '';
+    }
 }
 
 function deleteAllCookies() {
