@@ -1,0 +1,42 @@
+[
+    {
+        "name" : "French Art Deco Bronze Marble Foyer Coffee Table", 
+        "seller" : "Hill Auction Gallery ", 
+        "startPrice" : "125", 
+        "stopDate" : "Sep 12", 
+        "picLink" : "https://i.pinimg.com/564x/02/24/bb/0224bba17a00619a85fa3e4291705fb1.jpg", 
+        "bidsQty" : "10"
+    },
+    {
+        "name" : "Painted tall chest having three short drawers over", 
+        "seller" : "Nadeau's Auction Gallery", 
+        "startPrice" : "50", 
+        "stopDate" : "Aug 25", 
+        "picLink" : "https://i.pinimg.com/564x/a1/ed/4c/a1ed4c60829d2e4b7c3f6bc3a9c02afb.jpg", 
+        "bidsQty" : "7"
+    },
+    {
+        "name" : "ANTIQUE LOUIS XV TRUMEAU MIRROR", 
+        "seller" : "SS Auction, Inc.", 
+        "startPrice" : "200", 
+        "stopDate" : "Sep 1", 
+        "picLink" : "https://i.pinimg.com/564x/77/1f/08/771f0833dd8b40786dc12454315f2480.jpg", 
+        "bidsQty" : "10"
+    },
+    {
+        "name" : "Richard Frinier for Century outdoor sofa with cushions,", 
+        "seller" : "Nadeau's Auction Gallery", 
+        "startPrice" : "1600", 
+        "stopDate" : "Sep 30", 
+        "picLink" : "https://i.pinimg.com/564x/dd/68/99/dd68998c898f506b52c39f4fb592b78d.jpg", 
+        "bidsQty" : "6"
+    },
+    {
+        "name" : "Eames DCW Chair , Original Circa 1949 First Period", 
+        "seller" : "Donny Malone Auctions", 
+        "startPrice" : "375", 
+        "stopDate" : "Aug 30", 
+        "picLink" : "https://i.pinimg.com/564x/14/35/68/1435682ce740a8956f1e79afae1bea4e.jpg", 
+        "bidsQty" : "9"
+    }
+]
