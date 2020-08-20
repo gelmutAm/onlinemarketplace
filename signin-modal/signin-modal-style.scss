@@ -1,0 +1,111 @@
+.signin-modal-wrapper {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    display: none; 
+}
+
+.signin-modal-backdrop {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.1;
+}
+
+.signin-modal {
+    position: relative;
+    display: flex;
+    width: 700px;
+    background-color: white;
+}
+
+.signin-modal-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.modal-close-button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-close-button {
+    all: unset;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.modal-close-button:hover {
+    cursor: pointer;
+}
+
+.modal-content-logo {
+    font-size: 20px;
+}
+
+.signin-modal-content-header {
+    font-size: 16px;
+    padding-bottom: 30px;
+    margin-bottom: 0;
+}
+
+.signin-modal-input-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.signin-modal-input-container label {
+    margin-bottom: 3px;
+    font-size: 14px;
+    color: #707070;
+}
+
+.signin-modal-input-container input {
+    all: unset;
+    width: 300px;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+.signin-modal-input-container input:focus {
+    border-color: #0097ba;
+}
+
+.signin-modal-button {
+    all: unset;
+    width: 300px;
+    height: 40px;
+    margin-top: 14px;
+    background-color: var(--app-primary-color);
+    text-align: center;
+    color: var(--app-text-light-color);
+    transition: all .3s ease-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.225);
+}
+
+.signin-modal-button:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 10px 0px rgba(0,0,0,0.225);
+}
+
+.signin-modal-button:active {
+    box-shadow: 0 0 1px black;
+}
