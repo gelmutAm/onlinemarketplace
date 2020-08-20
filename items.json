@@ -4,7 +4,7 @@
         "seller" : "Hill Auction Gallery ", 
         "startPrice" : "125", 
         "stopDate" : "Sep 12", 
-        "picLink" : "https://i.pinimg.com/564x/02/24/bb/0224bba17a00619a85fa3e4291705fb1.jpg", 
+        "picLink" : "https://i.pinimg.com/564x/8e/e8/c3/8ee8c3c97cd11e4a4e479dce94461886.jpg", 
         "bidsQty" : "10"
     },
     {
@@ -12,7 +12,7 @@
         "seller" : "Nadeau's Auction Gallery", 
         "startPrice" : "50", 
         "stopDate" : "Aug 25", 
-        "picLink" : "https://i.pinimg.com/564x/a1/ed/4c/a1ed4c60829d2e4b7c3f6bc3a9c02afb.jpg", 
+        "picLink" : "https://i.pinimg.com/564x/6b/f3/9b/6bf39ba5083322b099a7a2d1190aab5b.jpg", 
         "bidsQty" : "7"
     },
     {
@@ -20,7 +20,7 @@
         "seller" : "SS Auction, Inc.", 
         "startPrice" : "200", 
         "stopDate" : "Sep 1", 
-        "picLink" : "https://i.pinimg.com/564x/77/1f/08/771f0833dd8b40786dc12454315f2480.jpg", 
+        "picLink" : "https://i.pinimg.com/564x/fb/a2/78/fba2782c25fd4e6ee847760340cc21be.jpg", 
         "bidsQty" : "10"
     },
     {
@@ -28,7 +28,7 @@
         "seller" : "Nadeau's Auction Gallery", 
         "startPrice" : "1600", 
         "stopDate" : "Sep 30", 
-        "picLink" : "https://i.pinimg.com/564x/dd/68/99/dd68998c898f506b52c39f4fb592b78d.jpg", 
+        "picLink" : "https://i.pinimg.com/564x/f1/aa/70/f1aa70f6e8d2ca8419b7184e81f9df04.jpg", 
         "bidsQty" : "6"
     },
     {
@@ -36,7 +36,15 @@
         "seller" : "Donny Malone Auctions", 
         "startPrice" : "375", 
         "stopDate" : "Aug 30", 
-        "picLink" : "https://i.pinimg.com/564x/14/35/68/1435682ce740a8956f1e79afae1bea4e.jpg", 
+        "picLink" : "https://i.pinimg.com/564x/63/0f/a5/630fa50453606061f46a81ed052418ff.jpg", 
+        "bidsQty" : "9"
+    },
+    {
+        "name" : "Eames DCW Chair , Original Circa 1949 First Period", 
+        "seller" : "Donny Malone Auctions", 
+        "startPrice" : "375", 
+        "stopDate" : "Aug 30", 
+        "picLink" : "https://i.pinimg.com/564x/63/0f/a5/630fa50453606061f46a81ed052418ff.jpg", 
         "bidsQty" : "9"
     }
 ]
