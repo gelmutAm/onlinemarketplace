@@ -45,8 +45,13 @@ html {
 
 .content-padding {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
+  font-size: 30px;
 }
 
 .main-page-content-header {
@@ -806,6 +811,7 @@ template {
 .item-bidding-input-container label {
   text-transform: uppercase;
   align-self: flex-start;
+  font-size: 16px;
 }
 
 .item-bidding-input-container input {
@@ -816,6 +822,7 @@ template {
   background-color: white;
   padding: 10px;
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 .item-bidding-input-container input:focus {
@@ -832,6 +839,7 @@ template {
   text-transform: uppercase;
   text-align: center;
   font-weight: bold;
+  font-size: 16px;
 }
 
 .item-bidding-content-bid-button:hover {

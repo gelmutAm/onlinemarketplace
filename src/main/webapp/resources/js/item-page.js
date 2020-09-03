@@ -23,7 +23,14 @@ function initialize() {
             contentPadding.removeChild(contentPadding.firstChild);
         }
 
-        showItem(item);
+debugger
+        if (item.name === null) {
+            var para = document.createElement('p');
+            para.textContent = 'Nothing found!';
+            contentPadding.appendChild(para);
+        } else {
+             showItem(item);
+        }
     }
 
     function showItem(item) {
