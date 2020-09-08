@@ -5,15 +5,16 @@ import com.epam.marketplace.dao.implementations.UserDaoImpl;
 import com.epam.marketplace.models.User;
 import com.epam.marketplace.services.interfaces.UserService;
 
+import javax.inject.Inject;
 import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private final UserDao userDao;
 
-    //@Inject
-    public UserServiceImpl() throws SQLException, ClassNotFoundException {
-        userDao = new UserDaoImpl();
+    @Inject
+    private UserDao userDao;
+
+    public UserServiceImpl() {
     }
 
     @Override

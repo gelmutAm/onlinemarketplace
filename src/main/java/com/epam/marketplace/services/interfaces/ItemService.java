@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface ItemService {
 
-    void add(Item item);
+    void add(Item item) throws SQLException;
 
-    void update(Item item);
+    void update(Item item) throws SQLException;
 
-    void delete(Item item);
+    void delete(Item item) throws SQLException;
 
     Item getById(int id) throws SQLException;
 

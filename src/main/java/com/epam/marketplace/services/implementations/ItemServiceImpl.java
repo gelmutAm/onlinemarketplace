@@ -1,34 +1,36 @@
 package com.epam.marketplace.services.implementations;
 
-import com.epam.marketplace.dao.implementations.ItemDaoImpl;
 import com.epam.marketplace.dao.interfaces.ItemDao;
 import com.epam.marketplace.models.Item;
 import com.epam.marketplace.services.interfaces.ItemService;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.sql.SQLException;
 import java.util.List;
 
+@ApplicationScoped
 public class ItemServiceImpl implements ItemService {
-    private final ItemDao itemDao;
 
-    //@Inject
-    public ItemServiceImpl() throws SQLException, ClassNotFoundException {
-        itemDao = new ItemDaoImpl();
+    @Inject
+    private ItemDao itemDao;
+
+    public ItemServiceImpl() {
     }
 
     @Override
-    public void add(Item item) {
-
+    public void add(Item item) throws SQLException {
+        itemDao.add(item);
     }
 
     @Override
-    public void update(Item item) {
-
+    public void update(Item item) throws SQLException {
+        itemDao.update(item);
     }
 
     @Override
-    public void delete(Item item) {
-
+    public void delete(Item item) throws SQLException {
+        itemDao.delete(item);
     }
 
     @Override

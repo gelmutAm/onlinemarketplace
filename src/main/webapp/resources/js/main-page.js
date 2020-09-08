@@ -1,6 +1,6 @@
 var items;
 
-fetch('http://localhost:8888/api/marketplace/all-items').then(function (response) {
+fetch('/api/marketplace/all-items').then(function (response) {
     if (response.ok) {
         response.json().then(function (json) {
             items = json;

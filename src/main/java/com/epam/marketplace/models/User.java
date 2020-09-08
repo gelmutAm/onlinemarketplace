@@ -5,6 +5,7 @@ public class User {
     private String name;
     private String surname;
     private int credentialsId;
+    private Integer sessionId;
 
     public User() {
     }
@@ -40,5 +41,13 @@ public class User {
 
     public void setCredentialsId(int credentialsId) {
         this.credentialsId = credentialsId;
+    }
+
+    public Integer getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(Integer sessionId) {
+        this.sessionId = sessionId;
     }
 }

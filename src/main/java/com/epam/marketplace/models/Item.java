@@ -7,7 +7,7 @@ public class Item {
     private int sellerId;
     private String name;
     private String description;
-    private double startPrice;
+    private int startPrice;
     private String stopDate;
     private String pictureLink;
 
@@ -46,11 +46,11 @@ public class Item {
         this.description = description;
     }
 
-    public double getStartPrice() {
+    public int getStartPrice() {
         return startPrice;
     }
 
-    public void setStartPrice(double startPrice) {
+    public void setStartPrice(int startPrice) {
         this.startPrice = startPrice;
     }
 

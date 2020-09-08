@@ -59,9 +59,10 @@ html {
   font-size: 30px;
 }
 
-content-header {
+.content-header {
   margin: 0 0 30px 0;
   font-size: 30px;
+  align-self: flex-start;
 }
 
 .item-cards-wrapper {
@@ -852,6 +853,7 @@ template {
   margin-top: 30px;
   padding: 20px 0;
   border-top: 1px solid #e3e3e3;
+  align-self: flex-start;
 }
 
 .item-description {

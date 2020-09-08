@@ -1,21 +1,23 @@
 var item;
 var path = window.location.href.split('=');
 var id = path[path.length - 1];
+var contentPadding = document.getElementsByClassName('content-padding')[0];
 
-fetch('http://localhost:8888/api/marketplace/item?id=' + id).then(function (response) {
+fetch('/api/marketplace/item?id=' + id).then(function (response) {
     if (response.ok) {
         response.json().then(function (json) {
             item = json;
             initialize();
         });
     } else {
+        var para = document.createElement('p');
+        para.textContent = 'Nothing found!';
+        contentPadding.appendChild(para);
         console.log('Network request for items.json failed with response ' + response.status + ': ' + response.statusText);
     }
 })
 
 function initialize() {
-    var contentPadding = document.getElementsByClassName('content-padding')[0];
-
     updateDisplay();
 
     function updateDisplay() {
@@ -23,7 +25,6 @@ function initialize() {
             contentPadding.removeChild(contentPadding.firstChild);
         }
 
-debugger
         if (item.name === null) {
             var para = document.createElement('p');
             para.textContent = 'Nothing found!';

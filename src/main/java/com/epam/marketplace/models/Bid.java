@@ -4,7 +4,7 @@ public class Bid {
     private int id;
     private int userId;
     private int itemId;
-    private double price;
+    private int price;
 
     public Bid() {
     }
@@ -33,11 +33,11 @@ public class Bid {
         this.itemId = itemId;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }
