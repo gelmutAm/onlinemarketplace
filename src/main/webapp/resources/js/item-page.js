@@ -1,9 +1,9 @@
 var item;
-var path = window.location.href.split('=');
+var path = window.location.href.split("/");
 var id = path[path.length - 1];
 var contentPadding = document.getElementsByClassName('content-padding')[0];
 
-fetch('/api/marketplace/item?id=' + id).then(function (response) {
+fetch('/api/marketplace/item/' + id).then(function (response) {
     if (response.ok) {
         response.json().then(function (json) {
             item = json;

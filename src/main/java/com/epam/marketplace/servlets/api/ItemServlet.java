@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/api/marketplace/item")
+@WebServlet("/api/marketplace/item/*")
 public class ItemServlet extends HttpServlet {
 
     @Inject
@@ -26,7 +26,7 @@ public class ItemServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        int id = getIdFromPath(req.getPathInfo());
         Item item = null;
         ItemDto itemDto = null;
         try {
@@ -38,5 +38,10 @@ public class ItemServlet extends HttpServlet {
 
         resp.setContentType("application/json");
         resp.getWriter().write(new ObjectMapper().writeValueAsString(itemDto));
+    }
+
+    private int getIdFromPath(String path) {
+        String[] pathParts = path.split("/");
+        return Integer.parseInt(pathParts[pathParts.length - 1]);
     }
 }
