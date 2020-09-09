@@ -23,6 +23,7 @@ public class ItemDaoImpl implements ItemDao {
     public void add(Item item) throws SQLException {
         String query = "insert into " +
                 tableName +
+                " (seller_id, item_name, item_description, start_price, stop_date, picture_link)" +
                 " values (?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, item.getSellerId());

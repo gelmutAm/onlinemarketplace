@@ -21,8 +21,9 @@ public class BidDaoImpl implements BidDao {
 
     @Override
     public void add(Bid bid) throws SQLException {
-        String query = "insert into" +
+        String query = "insert into " +
                 tableName +
+                " (user_id, item_id, bid_price)" +
                 " values (?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, bid.getUserId());
@@ -73,6 +74,22 @@ public class BidDaoImpl implements BidDao {
         }
 
         return bid;
+    }
+
+    @Override
+    public int getBidsQtyByItemId(int itemId) throws SQLException {
+        String query = "select count(*) from " +
+                tableName +
+                " where item_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, itemId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        int bidsQty = 0;
+        while(resultSet.next()) {
+            bidsQty = resultSet.getInt(1);
+        }
+
+        return bidsQty;
     }
 
     @Override

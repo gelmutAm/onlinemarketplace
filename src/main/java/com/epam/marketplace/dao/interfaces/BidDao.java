@@ -15,5 +15,7 @@ public interface BidDao {
 
     Bid getById(int id) throws SQLException;
 
+    int getBidsQtyByItemId(int itemId) throws SQLException;
+
     List<Bid> getAll() throws SQLException;
 }

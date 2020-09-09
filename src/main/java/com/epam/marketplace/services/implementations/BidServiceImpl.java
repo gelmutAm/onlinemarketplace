@@ -39,6 +39,11 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
+    public int getBidsQtyByItemId(int itemId) throws SQLException {
+        return bidDao.getBidsQtyByItemId(itemId);
+    }
+
+    @Override
     public List<Bid> getAll() throws SQLException {
         return bidDao.getAll();
     }

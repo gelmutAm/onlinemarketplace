@@ -23,6 +23,7 @@ public class CredentialsDaoImpl implements CredentialsDao {
     public void add(Credentials credentials) throws SQLException {
         String query = "insert into " +
                 tableName +
+                " (credentials_login, credentials_password)" +
                 " values (?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, credentials.getLogin());

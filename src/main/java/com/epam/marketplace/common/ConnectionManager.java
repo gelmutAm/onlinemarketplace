@@ -1,6 +1,5 @@
 package com.epam.marketplace.common;
 
-import javax.inject.Singleton;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
