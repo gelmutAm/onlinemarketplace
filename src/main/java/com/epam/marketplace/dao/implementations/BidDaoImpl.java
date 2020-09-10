@@ -12,6 +12,10 @@ import java.util.List;
 @ApplicationScoped
 public class BidDaoImpl implements BidDao {
     private static final String tableName = "marketplace.bids";
+    private static final String idColumnName = "bid_id";
+    private static final String userIdColumnName = "user_id";
+    private static final String itemIdColumnName = "item_id";
+    private static final String priceColumnName = "bid_price";
 
     private final Connection connection;
 
@@ -23,7 +27,7 @@ public class BidDaoImpl implements BidDao {
     public void add(Bid bid) throws SQLException {
         String query = "insert into " +
                 tableName +
-                " (user_id, item_id, bid_price)" +
+                " (" + userIdColumnName + ", " + itemIdColumnName + ", " + priceColumnName + ")" +
                 " values (?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, bid.getUserId());
@@ -36,10 +40,10 @@ public class BidDaoImpl implements BidDao {
     public void update(Bid bid) throws SQLException {
         String query = "update " +
                 tableName +
-                " set user_id = ?," +
-                " item_id = ?," +
-                " bid_price = ?," +
-                " where bid_id = ?";
+                " set  " + userIdColumnName + " = ?, " +
+                itemIdColumnName + " = ?, " +
+                priceColumnName + " = ? " +
+                " where " + idColumnName + " = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, bid.getUserId());
         preparedStatement.setInt(2, bid.getItemId());
@@ -51,7 +55,7 @@ public class BidDaoImpl implements BidDao {
     public void delete(Bid bid) throws SQLException {
         String query = "delete from " +
                 tableName +
-                " where bid_id = ?";
+                " where " + idColumnName + " = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, bid.getId());
         preparedStatement.executeUpdate();
@@ -61,7 +65,7 @@ public class BidDaoImpl implements BidDao {
     public Bid getById(int id) throws SQLException {
         String query = "select * from" +
                 tableName +
-                " where bid_id = ?";
+                " where " + idColumnName + " = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -80,12 +84,12 @@ public class BidDaoImpl implements BidDao {
     public int getBidsQtyByItemId(int itemId) throws SQLException {
         String query = "select count(*) from " +
                 tableName +
-                " where item_id = ?";
+                " where " + itemIdColumnName + " = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, itemId);
         ResultSet resultSet = preparedStatement.executeQuery();
         int bidsQty = 0;
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             bidsQty = resultSet.getInt(1);
         }
 

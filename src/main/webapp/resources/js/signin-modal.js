@@ -1,7 +1,4 @@
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-
-$('.signup-form').submit(e => {
+$('.signin-form').submit(e => {
     e.preventDefault();
 
     const emailMessage = 'Email is not valid!';
@@ -10,38 +7,41 @@ $('.signup-form').submit(e => {
 
     const emailInput = e.target[0];
     const passwordInput = e.target[1];
-    const confirmPasswordInput = e.target[2];
 
-    const isEmailValid = EMAIL_REGEX.test(emailInput.value.toLowerCase());
-    const isPasswordValid = PASSWORD_REGEX.test(passwordInput.value);
-    const doPasswordsMatch = (passwordInput.value === confirmPasswordInput.value);
+    const isEmailValid = (emailInput.value.length === 0) ? false : true;
+    const isPasswordValid = (passwordInput.value.length === 0) ? false : true;
 
-    if (isEmailValid && isPasswordValid && doPasswordsMatch) {
-        debugger
+    if (isEmailValid && isPasswordValid) {
         let credentials = {
             login: emailInput.value,
             password : passwordInput.value
         };
-        fetch('/api/marketplace/signup', {
+
+        fetch('/api/marketplace/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(credentials)
+            body: JSON.stringify(credentials),
+        }).then((response) => {
+            if (response.ok) {
+                hideModal('.signin-modal-wrapper');
+                emailInput.value = '';
+                passwordInput.value = '';
+            } else {
+                e.target.reportValidity();
+            }
         });
-        hideModal('.signup-modal-wrapper');
-        emailInput.value = '';
-        passwordInput.value = '';
-        confirmPasswordInput.value = '';
+
     } else {
         switch (true) {
             case !isEmailValid : emailInput.setCustomValidity(emailMessage); break;
             case !isPasswordValid : passwordInput.setCustomValidity(passwordMessage); break;
             case !doPasswordsMatch : confirmPasswordInput.setCustomValidity(confirmPasswordMessage); break;
         }
-        e.target.reportValidity(); 
-    }    
+        e.target.reportValidity();
+    }
 })
 
 function resetValidity() {

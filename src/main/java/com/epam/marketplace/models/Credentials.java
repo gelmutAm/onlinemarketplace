@@ -3,7 +3,7 @@ package com.epam.marketplace.models;
 public class Credentials {
     private int id;
     private String login;
-    private int password;
+    private String password;
 
     public Credentials() {
     }
@@ -24,11 +24,11 @@ public class Credentials {
         this.login = login;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

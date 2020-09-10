@@ -39,6 +39,11 @@ public class CredentialsServiceImpl implements CredentialsService {
     }
 
     @Override
+    public Credentials getByLogin(String login) throws SQLException {
+        return credentialsDao.getByLogin(login);
+    }
+
+    @Override
     public List<Credentials> getAll() throws SQLException {
         return credentialsDao.getAll();
     }

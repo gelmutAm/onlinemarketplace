@@ -1,7 +1,5 @@
 package com.epam.marketplace.models;
 
-import java.util.Date;
-
 public class Item {
     private int id;
     private int sellerId;

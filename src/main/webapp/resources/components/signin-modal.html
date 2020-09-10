@@ -5,21 +5,28 @@
         <div class="modal-close-button-wrapper">
             <button class="modal-close-button">&times;</button>
         </div>
+
         <div class="modal-content-logo">
             <span class="app-header-logo-online">online</span><span
                 class="app-header-logo-marketplace">marketplace</span>
         </div>
+
         <h5 class="signin-modal-content-header">Log in to begin your treasure hunt.</h5>
+
+        <form class="signin-form">
             <div class="signin-modal-input-container">
                 <label for="signin-login">Login</label>
-                <input id="signin-login" type="text" minlength="8" maxlength="20" pattern="[a-z]{4,8}">
+                <input id="signin-login">
             </div>
+
             <div class="signin-modal-input-container">
                 <label for="signin-password">Password</label>
-                <input id="signin-password" type="password" minlength="8" maxlength="20">
+                <input id="signin-password" type="password">
             </div>
-            <button class="signin-modal-button">Log In</button>
+
+            <button type="submit" class="signin-modal-button">Log In</button>
+        </form>
     </div>
 </div>
 
-<script src="/resources/js/signin-modal-script.js"></script>
+<script src="/resources/js/signin-modal.js"></script>

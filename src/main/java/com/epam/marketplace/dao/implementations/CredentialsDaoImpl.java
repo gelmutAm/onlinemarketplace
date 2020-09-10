@@ -12,6 +12,9 @@ import java.util.List;
 @ApplicationScoped
 public class CredentialsDaoImpl implements CredentialsDao {
     private static final String tableName = "marketplace.credentials";
+    private static final String idColumnName = "credentials_id";
+    private static final String loginColumnName = "credentials_login";
+    private static final String passwordColumnName = "credentials_password";
 
     private final Connection connection;
 
@@ -23,11 +26,11 @@ public class CredentialsDaoImpl implements CredentialsDao {
     public void add(Credentials credentials) throws SQLException {
         String query = "insert into " +
                 tableName +
-                " (credentials_login, credentials_password)" +
+                " (" + loginColumnName + ", " + passwordColumnName + ")" +
                 " values (?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, credentials.getLogin());
-        preparedStatement.setInt(2, credentials.getPassword());
+        preparedStatement.setString(2, credentials.getPassword());
         preparedStatement.executeUpdate();
     }
 
@@ -35,12 +38,12 @@ public class CredentialsDaoImpl implements CredentialsDao {
     public void update(Credentials credentials) throws SQLException {
         String query = "update " +
                 tableName +
-                " set credentials_login = ?," +
-                " credentials_password = ?" +
-                " where credentials_id = ?";
+                " set " + loginColumnName + " = ?, " +
+                passwordColumnName + " = ? " +
+                "where " + idColumnName + " = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, credentials.getLogin());
-        preparedStatement.setInt(2, credentials.getPassword());
+        preparedStatement.setString(2, credentials.getPassword());
         preparedStatement.setInt(3, credentials.getId());
         preparedStatement.executeUpdate();
     }
@@ -49,7 +52,7 @@ public class CredentialsDaoImpl implements CredentialsDao {
     public void delete(Credentials credentials) throws SQLException {
         String query = "delete from" +
                 tableName +
-                " where credentials_id = ?";
+                " where " + idColumnName + " = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, credentials.getId());
         preparedStatement.executeUpdate();
@@ -59,15 +62,33 @@ public class CredentialsDaoImpl implements CredentialsDao {
     public Credentials getById(int id) throws SQLException {
         String query = "select * from " +
                 tableName +
-                " where credentials_id = ?";
+                " where " + idColumnName + " = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         Credentials credentials = new Credentials();
         while (resultSet.next()) {
-            credentials.setId(resultSet.getInt("credentials_id"));
-            credentials.setLogin(resultSet.getString("credentials_login"));
-            credentials.setPassword(resultSet.getInt("credentials_password"));
+            credentials.setId(resultSet.getInt(idColumnName));
+            credentials.setLogin(resultSet.getString(loginColumnName));
+            credentials.setPassword(resultSet.getString(passwordColumnName));
+        }
+
+        return credentials;
+    }
+
+    @Override
+    public Credentials getByLogin(String login) throws SQLException {
+        String query = "select * from " +
+                tableName +
+                " where " + loginColumnName + " = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, login);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Credentials credentials = new Credentials();
+        while (resultSet.next()) {
+            credentials.setId(resultSet.getInt(idColumnName));
+            credentials.setLogin(resultSet.getString(loginColumnName));
+            credentials.setPassword(resultSet.getString(passwordColumnName));
         }
 
         return credentials;
@@ -81,9 +102,9 @@ public class CredentialsDaoImpl implements CredentialsDao {
         List<Credentials> credentialsList = new ArrayList<>();
         while (resultSet.next()) {
             Credentials credentials = new Credentials();
-            credentials.setId(resultSet.getInt("credentials_id"));
-            credentials.setLogin(resultSet.getString("credentials_login"));
-            credentials.setPassword(resultSet.getInt("credentials_password"));
+            credentials.setId(resultSet.getInt(idColumnName));
+            credentials.setLogin(resultSet.getString(loginColumnName));
+            credentials.setPassword(resultSet.getString(passwordColumnName));
 
             credentialsList.add(credentials);
         }

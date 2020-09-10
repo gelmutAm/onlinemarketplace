@@ -34,11 +34,11 @@ function initHandlers() {
         showModal('.signup-modal-wrapper');
     })
 
-    $('.signin-modal-button').click(() => {
-        document.cookie = encodeURIComponent("logged-in") + '=' + encodeURIComponent("true") + ";" + "path=/;";
-        hideModal('.signin-modal-wrapper');
-        headerInit();
-    })
+//    $('.signin-modal-button').click(() => {
+//        document.cookie = encodeURIComponent("logged-in") + '=' + encodeURIComponent("true") + ";" + "path=/;";
+//        //hideModal('.signin-modal-wrapper');
+//        headerInit();
+//    })
 
     $('.modal-close-button').click(() => {
         hideModal('.signin-modal-wrapper');
@@ -90,6 +90,6 @@ function deleteAllCookies() {
         var cookie = cookies[i];
         var eqPos = cookie.indexOf("=");
         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=127.0.0.1;";
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=localhost;";
     }
 }

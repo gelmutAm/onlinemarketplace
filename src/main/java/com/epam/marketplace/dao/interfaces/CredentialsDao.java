@@ -15,5 +15,7 @@ public interface CredentialsDao {
 
     Credentials getById(int id) throws SQLException;
 
+    Credentials getByLogin(String login) throws SQLException;
+
     List<Credentials> getAll() throws SQLException;
 }

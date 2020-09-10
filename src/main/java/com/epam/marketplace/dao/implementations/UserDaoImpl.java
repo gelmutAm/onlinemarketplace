@@ -12,6 +12,10 @@ import java.util.List;
 @ApplicationScoped
 public class UserDaoImpl implements UserDao {
     private static final String tableName = "marketplace.users";
+    private static final String idColumnName = "user_id";
+    private static final String nameColumnName = "user_name";
+    private static final String surnameColumnName = "user_surname";
+    private static final String credentialsIdColumnName = "credentials_id";
 
     private final Connection connection;
 
@@ -23,7 +27,7 @@ public class UserDaoImpl implements UserDao {
     public void add(User user) throws SQLException {
         String query = "insert into " +
                 tableName +
-                " (user_name, user_surname, credentials_id)" +
+                " (" + nameColumnName + ", " + surnameColumnName + ", " + credentialsIdColumnName + ")" +
                 " values (?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, user.getName());
@@ -36,10 +40,10 @@ public class UserDaoImpl implements UserDao {
     public void update(User user) throws SQLException {
         String query = "update " +
                 tableName +
-                " set user_name = ?," +
-                " user_surname = ?," +
-                " credentials_id = ?" +
-                " where user_id = ?";
+                " set  " + nameColumnName + " = ?, " +
+                surnameColumnName + " = ?, " +
+                credentialsIdColumnName + " = ? " +
+                " where " + idColumnName + " = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, user.getName());
         preparedStatement.setString(2, user.getSurname());
@@ -51,7 +55,7 @@ public class UserDaoImpl implements UserDao {
     public void delete(User user) throws SQLException {
         String query = "delete from " +
                 tableName +
-                " where user_id = ?";
+                " where " + idColumnName + " = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, user.getId());
         preparedStatement.executeUpdate();
@@ -61,7 +65,7 @@ public class UserDaoImpl implements UserDao {
     public User getById(int id) throws SQLException {
         String query = "select * from " +
                 tableName +
-                " where user_id = ?";
+                " where " + idColumnName + " = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
