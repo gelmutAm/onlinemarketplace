@@ -16,12 +16,12 @@
         <form class="signin-form">
             <div class="signin-modal-input-container">
                 <label for="signin-login">Login</label>
-                <input id="signin-login">
+                <input id="signin-login" onkeypress="resetValidity()">
             </div>
 
             <div class="signin-modal-input-container">
                 <label for="signin-password">Password</label>
-                <input id="signin-password" type="password">
+                <input id="signin-password" onkeypress="resetValidity()" type="password">
             </div>
 
             <button type="submit" class="signin-modal-button">Log In</button>

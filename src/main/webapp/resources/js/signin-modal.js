@@ -1,9 +1,9 @@
 $('.signin-form').submit(e => {
     e.preventDefault();
 
-    const emailMessage = 'Email is not valid!';
-    const passwordMessage = 'Password must be at list 8 characters including a number, uppercase and lowercase letters.';
-    const confirmPasswordMessage = 'Please make sure your passwords match.';
+    const incorrectCredentialsMessage = 'Incorrect username or password.';
+    const incorrectUsernameMessage = 'Incorrect username.';
+    const incorrectPasswordMessage = 'Incorrect password.';
 
     const emailInput = e.target[0];
     const passwordInput = e.target[1];
@@ -27,25 +27,26 @@ $('.signin-form').submit(e => {
         }).then((response) => {
             if (response.ok) {
                 hideModal('.signin-modal-wrapper');
-                emailInput.value = '';
-                passwordInput.value = '';
             } else {
+                emailInput.setCustomValidity(incorrectCredentialsMessage);
                 e.target.reportValidity();
             }
+
+            emailInput.value = '';
+            passwordInput.value = '';
         });
 
     } else {
         switch (true) {
-            case !isEmailValid : emailInput.setCustomValidity(emailMessage); break;
-            case !isPasswordValid : passwordInput.setCustomValidity(passwordMessage); break;
-            case !doPasswordsMatch : confirmPasswordInput.setCustomValidity(confirmPasswordMessage); break;
+            case !isEmailValid : emailInput.setCustomValidity(incorrectUsernameMessage); break;
+            case !isPasswordValid : passwordInput.setCustomValidity(incorrectPasswordMessage); break;
         }
+
         e.target.reportValidity();
     }
 })
 
 function resetValidity() {
-    $('#signup-login')[0].setCustomValidity('');
-    $('#signup-password')[0].setCustomValidity('');
-    $('#signup-confirm-password')[0].setCustomValidity('');
+    $('#signin-login')[0].setCustomValidity('');
+    $('#signin-password')[0].setCustomValidity('');
 }

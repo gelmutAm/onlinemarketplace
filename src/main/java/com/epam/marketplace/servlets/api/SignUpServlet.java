@@ -1,6 +1,7 @@
 package com.epam.marketplace.servlets.api;
 
 import com.epam.marketplace.models.Credentials;
+import com.epam.marketplace.models.User;
 import com.epam.marketplace.services.interfaces.CredentialsService;
 import com.epam.marketplace.services.interfaces.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +32,10 @@ public class SignUpServlet extends HttpServlet {
         Credentials credentials = new ObjectMapper().readValue(body, Credentials.class);
         try {
             credentialsService.add(credentials);
+            int credentialsId = credentialsService.getByLogin(credentials.getLogin()).getId();
+            User user = new User();
+            user.setCredentialsId(credentialsId);
+            userService.add(user);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
