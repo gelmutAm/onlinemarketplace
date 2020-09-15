@@ -24,7 +24,7 @@ public class BasicConnectionPool implements ConnectionPool {
         }
     }
 
-    public static BasicConnectionPool getInstance() throws SQLException {
+    public static synchronized BasicConnectionPool getInstance() throws SQLException {
         if (instance == null) {
             instance = new BasicConnectionPool();
         }
