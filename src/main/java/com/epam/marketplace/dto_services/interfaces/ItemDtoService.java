@@ -1,4 +1,4 @@
-package com.epam.marketplace.dtoservices.interfaces;
+package com.epam.marketplace.dto_services.interfaces;
 
 import com.epam.marketplace.dto.ItemDto;
 import com.epam.marketplace.models.Item;

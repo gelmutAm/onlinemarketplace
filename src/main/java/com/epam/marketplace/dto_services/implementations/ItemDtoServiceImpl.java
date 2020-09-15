@@ -1,7 +1,7 @@
-package com.epam.marketplace.dtoservices.implementations;
+package com.epam.marketplace.dto_services.implementations;
 
 import com.epam.marketplace.dto.ItemDto;
-import com.epam.marketplace.dtoservices.interfaces.ItemDtoService;
+import com.epam.marketplace.dto_services.interfaces.ItemDtoService;
 import com.epam.marketplace.models.Item;
 import com.epam.marketplace.services.interfaces.BidService;
 import com.epam.marketplace.services.interfaces.UserService;

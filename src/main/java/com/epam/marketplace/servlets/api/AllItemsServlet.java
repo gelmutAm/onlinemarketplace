@@ -1,7 +1,7 @@
 package com.epam.marketplace.servlets.api;
 
 import com.epam.marketplace.dto.ItemDto;
-import com.epam.marketplace.dtoservices.interfaces.ItemDtoService;
+import com.epam.marketplace.dto_services.interfaces.ItemDtoService;
 import com.epam.marketplace.models.Item;
 import com.epam.marketplace.services.interfaces.ItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;

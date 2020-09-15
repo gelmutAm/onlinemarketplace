@@ -27,6 +27,7 @@ $('.signin-form').submit(e => {
         }).then((response) => {
             if (response.ok) {
                 hideModal('.signin-modal-wrapper');
+                headerInit();
             } else {
                 emailInput.setCustomValidity(incorrectCredentialsMessage);
                 e.target.reportValidity();

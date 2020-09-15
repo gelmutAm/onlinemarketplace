@@ -12,19 +12,21 @@ function getDropdown() {
 function headerInit() {
     const buttonContainerSelector = '.app-header-buttons-container';
     $(buttonContainerSelector).children().remove();
-    if (document.cookie.includes('logged-in=true')) {
-        $(buttonContainerSelector).append(dropdown);
-    } else {
-        $(buttonContainerSelector)
-            .append('<button class="app-header-login-button">LOG IN</button>')
-            .append('<button class="app-header-join-button">JOIN</button>');
-    }
-
-    initHandlers();
+    fetch('/api/marketplace/authorization', {
+        method: 'POST',
+    }).then((response) => {
+        if (response.ok) {
+            $(buttonContainerSelector).append(dropdown);
+        } else {
+            $(buttonContainerSelector)
+                .append('<button class="app-header-login-button">LOG IN</button>')
+                .append('<button class="app-header-join-button">JOIN</button>');
+        }
+        initHandlers();
+    });
 }
 
 function initHandlers() {
-    console.log('get-handler');
 
     $('.app-header-login-button').click(() => {
         showModal('.signin-modal-wrapper');
@@ -33,12 +35,6 @@ function initHandlers() {
     $('.app-header-join-button').click(() => {
         showModal('.signup-modal-wrapper');
     })
-
-//    $('.signin-modal-button').click(() => {
-//        document.cookie = encodeURIComponent("logged-in") + '=' + encodeURIComponent("true") + ";" + "path=/;";
-//        //hideModal('.signin-modal-wrapper');
-//        headerInit();
-//    })
 
     $('.modal-close-button').click(() => {
         hideModal('.signin-modal-wrapper');
@@ -54,11 +50,12 @@ function initHandlers() {
     })
 
     $('.app-header-signout-button').click(() => {
-        deleteAllCookies();
+        fetch('/api/marketplace/signout', {
+            method: 'POST',
+        }).then((response) => {
+            response.ok && window.location.reload();
+        })
         headerInit();
-        if ($('div').is('.bids-container') || $('div').is('.items-container')) {
-            window.location.href = '/marketplace';
-        }
     })
 }
 

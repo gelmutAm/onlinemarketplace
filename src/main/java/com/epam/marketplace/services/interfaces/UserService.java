@@ -15,5 +15,7 @@ public interface UserService {
 
     User getById(int id) throws SQLException;
 
+    User getByCredentialsId(int id) throws SQLException;
+
     List<User> getAll() throws SQLException;
 }

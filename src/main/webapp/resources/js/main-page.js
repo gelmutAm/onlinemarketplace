@@ -85,7 +85,6 @@ function initialize() {
 
 function itemCardClickListener() {
     $('.item-card').click(function(e) {
-    debugger
             let id = $(this).attr('id');
             window.location.href = '/marketplace/item/' + id;
     });

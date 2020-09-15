@@ -39,6 +39,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getByCredentialsId(int id) throws SQLException {
+        return userDao.getByCredentialsId(id);
+    }
+
+    @Override
     public List<User> getAll() throws SQLException {
         return userDao.getAll();
     }
