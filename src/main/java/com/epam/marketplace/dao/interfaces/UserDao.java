@@ -1,6 +1,8 @@
 package com.epam.marketplace.dao.interfaces;
 
-public interface UserDao<T> extends BaseDao<T> {
+import com.epam.marketplace.models.User;
 
-    T getByCredentialsId(int id);
+public interface UserDao extends BaseDao<User> {
+
+    User getByCredentialsId(int id);
 }

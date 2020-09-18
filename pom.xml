@@ -61,6 +61,18 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>2.1.0.Beta1</version>
             </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.wildfly.plugins</groupId>-->
+<!--                <artifactId>wildfly-maven-plugin</artifactId>-->
+<!--                <version>2.0.2.Final</version>-->
+<!--                <configuration>-->
+<!--                    <jbossHome>C:\wildfly-20.0.1.Final</jbossHome>-->
+<!--                    <javaOpts>-->
+<!--                        -Djboss.http.port=8080 -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8787-->
+<!--                    </javaOpts>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

@@ -9,10 +9,10 @@ import javax.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-public class BidServiceImpl implements BidService<Bid> {
+public class BidServiceImpl implements BidService {
 
     @Inject
-    private BidDao<Bid> bidDao;
+    private BidDao bidDao;
 
     public BidServiceImpl() {
     }

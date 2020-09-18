@@ -9,10 +9,10 @@ import javax.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-public class UserServiceImpl implements UserService<User> {
+public class UserServiceImpl implements UserService {
 
     @Inject
-    private UserDao<User> userDao;
+    private UserDao userDao;
 
     public UserServiceImpl() {
     }

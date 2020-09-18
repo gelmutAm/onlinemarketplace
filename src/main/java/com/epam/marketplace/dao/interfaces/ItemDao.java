@@ -1,8 +1,10 @@
 package com.epam.marketplace.dao.interfaces;
 
+import com.epam.marketplace.models.Item;
+
 import java.util.List;
 
-public interface ItemDao<T> extends BaseDao<T> {
+public interface ItemDao extends BaseDao<Item> {
 
-    List<T> getAllBySellerId(int id);
+    List<Item> getAllBySellerId(int id);
 }

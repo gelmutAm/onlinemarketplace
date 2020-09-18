@@ -2,9 +2,7 @@ package com.epam.marketplace.dto_services.implementations;
 
 import com.epam.marketplace.dto.ItemDto;
 import com.epam.marketplace.dto_services.interfaces.ItemDtoConverter;
-import com.epam.marketplace.models.Bid;
 import com.epam.marketplace.models.Item;
-import com.epam.marketplace.models.User;
 import com.epam.marketplace.services.interfaces.BidService;
 import com.epam.marketplace.services.interfaces.UserService;
 
@@ -17,10 +15,10 @@ import java.util.List;
 public class ItemDtoConverterImpl implements ItemDtoConverter {
 
     @Inject
-    private UserService<User> userService;
+    private UserService userService;
 
     @Inject
-    private BidService<Bid> bidService;
+    private BidService bidService;
 
 
     public ItemDtoConverterImpl() {

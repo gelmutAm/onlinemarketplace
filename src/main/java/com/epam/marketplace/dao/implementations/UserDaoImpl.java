@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class UserDaoImpl implements UserDao<User> {
+public class UserDaoImpl implements UserDao {
     private static final String TABLE_NAME = "marketplace.users";
     private static final String ID_COLUMN_NAME = "user_id";
     private static final String NAME_COLUMN_NAME = "user_name";

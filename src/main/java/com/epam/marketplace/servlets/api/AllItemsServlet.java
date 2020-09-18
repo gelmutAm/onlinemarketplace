@@ -19,7 +19,7 @@ import java.util.List;
 public class AllItemsServlet extends HttpServlet {
 
     @Inject
-    private ItemService<Item> itemService;
+    private ItemService itemService;
 
     @Inject
     private ItemDtoConverter itemDtoConverter;

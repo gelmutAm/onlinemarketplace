@@ -9,10 +9,10 @@ import javax.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-public class CredentialsServiceImpl implements CredentialsService<Credentials> {
+public class CredentialsServiceImpl implements CredentialsService {
 
     @Inject
-    private CredentialsDao<Credentials> credentialsDao;
+    private CredentialsDao credentialsDao;
 
     public CredentialsServiceImpl() {
     }

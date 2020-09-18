@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class CredentialsDaoImpl implements CredentialsDao<Credentials> {
+public class CredentialsDaoImpl implements CredentialsDao {
     private static final String TABLE_NAME = "marketplace.credentials";
     private static final String ID_COLUMN_NAME = "credentials_id";
     private static final String LOGIN_COLUMN_NAME = "credentials_login";

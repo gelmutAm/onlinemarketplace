@@ -1,6 +1,8 @@
 package com.epam.marketplace.services.interfaces;
 
-public interface UserService<T> extends BaseService<T> {
+import com.epam.marketplace.models.User;
 
-    T getByCredentialsId(int id);
+public interface UserService extends BaseService<User> {
+
+    User getByCredentialsId(int id);
 }

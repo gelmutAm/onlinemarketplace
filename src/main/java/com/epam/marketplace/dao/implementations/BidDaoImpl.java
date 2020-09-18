@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class BidDaoImpl implements BidDao<Bid> {
+public class BidDaoImpl implements BidDao {
     private static final String TABLE_NAME = "marketplace.bids";
     private static final String ID_COLUMN_NAME = "bid_id";
     private static final String USER_ID_COLUMN_NAME = "user_id";

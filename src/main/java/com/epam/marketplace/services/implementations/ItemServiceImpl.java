@@ -9,10 +9,10 @@ import javax.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-public class ItemServiceImpl implements ItemService<Item> {
+public class ItemServiceImpl implements ItemService {
 
     @Inject
-    private ItemDao<Item> itemDao;
+    private ItemDao itemDao;
 
     public ItemServiceImpl() {
     }

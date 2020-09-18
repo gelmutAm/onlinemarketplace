@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class ItemDaoImpl implements ItemDao<Item> {
+public class ItemDaoImpl implements ItemDao {
     private static final String TABLE_NAME = "marketplace.items";
     private static final String ID_COLUMN_NAME = "item_id";
     private static final String SELLER_ID_COLUMN_NAME = "seller_id";

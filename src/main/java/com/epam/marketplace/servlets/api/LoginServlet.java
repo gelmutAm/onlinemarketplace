@@ -1,7 +1,6 @@
 package com.epam.marketplace.servlets.api;
 
 import com.epam.marketplace.models.Credentials;
-import com.epam.marketplace.models.User;
 import com.epam.marketplace.services.interfaces.CredentialsService;
 import com.epam.marketplace.services.interfaces.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,10 +18,10 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     @Inject
-    private CredentialsService<Credentials> credentialsService;
+    private CredentialsService credentialsService;
 
     @Inject
-    private UserService<User> userService;
+    private UserService userService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

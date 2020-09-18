@@ -1,6 +1,8 @@
 package com.epam.marketplace.dao.interfaces;
 
-public interface CredentialsDao<T> extends BaseDao<T> {
+import com.epam.marketplace.models.Credentials;
 
-    T getByLogin(String login);
+public interface CredentialsDao extends BaseDao<Credentials> {
+
+    Credentials getByLogin(String login);
 }

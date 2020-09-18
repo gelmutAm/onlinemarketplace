@@ -4,7 +4,7 @@ import com.epam.marketplace.models.Bid;
 
 import java.util.List;
 
-public interface BidDao<T> extends BaseDao<T> {
+public interface BidDao extends BaseDao<Bid> {
 
     int getBidsQtyByItemId(int itemId);
 

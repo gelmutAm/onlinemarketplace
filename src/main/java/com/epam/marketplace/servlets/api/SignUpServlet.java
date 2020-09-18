@@ -18,10 +18,10 @@ import java.io.IOException;
 public class SignUpServlet extends HttpServlet {
 
     @Inject
-    private CredentialsService<Credentials> credentialsService;
+    private CredentialsService credentialsService;
 
     @Inject
-    private UserService<User> userService;
+    private UserService userService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

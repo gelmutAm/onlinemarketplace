@@ -22,10 +22,10 @@ import java.util.List;
 public class BidServlet extends HttpServlet {
 
     @Inject
-    private BidService<Bid> bidService;
+    private BidService bidService;
 
     @Inject
-    private ItemService<Item> itemService;
+    private ItemService itemService;
 
     @Inject
     private ItemDtoConverter itemDtoConverter;

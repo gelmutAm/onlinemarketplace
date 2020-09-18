@@ -4,7 +4,7 @@ import com.epam.marketplace.models.Bid;
 
 import java.util.List;
 
-public interface BidService<T> extends BaseService<T> {
+public interface BidService extends BaseService<Bid> {
 
     int getBidsQtyByItemId(int itemId);
 
