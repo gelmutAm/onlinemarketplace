@@ -13,16 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/api/marketplace/signup")
 public class SignUpServlet extends HttpServlet {
 
     @Inject
-    private CredentialsService credentialsService;
+    private CredentialsService<Credentials> credentialsService;
 
     @Inject
-    private UserService userService;
+    private UserService<User> userService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,14 +29,10 @@ public class SignUpServlet extends HttpServlet {
                 .reduce("", (accumulator, actual) -> accumulator + actual);
 
         Credentials credentials = new ObjectMapper().readValue(body, Credentials.class);
-        try {
-            credentialsService.add(credentials);
-            int credentialsId = credentialsService.getByLogin(credentials.getLogin()).getId();
-            User user = new User();
-            user.setCredentialsId(credentialsId);
-            userService.add(user);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        credentialsService.add(credentials);
+        int credentialsId = credentialsService.getByLogin(credentials.getLogin()).getId();
+        User user = new User();
+        user.setCredentialsId(credentialsId);
+        userService.add(user);
     }
 }

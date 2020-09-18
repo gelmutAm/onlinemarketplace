@@ -1,19 +1,10 @@
 package com.epam.marketplace.services.interfaces;
 
-import com.epam.marketplace.models.Item;
+import com.epam.marketplace.dao.interfaces.BaseDao;
 
-import java.sql.SQLException;
 import java.util.List;
 
-public interface ItemService {
+public interface ItemService<T> extends BaseDao<T> {
 
-    void add(Item item) throws SQLException;
-
-    void update(Item item) throws SQLException;
-
-    void delete(Item item) throws SQLException;
-
-    Item getById(int id) throws SQLException;
-
-    List<Item> getAll() throws SQLException;
+    List<T> getAllBySellerId(int id);
 }

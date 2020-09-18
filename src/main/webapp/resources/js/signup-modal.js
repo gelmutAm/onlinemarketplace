@@ -17,7 +17,6 @@ $('.signup-form').submit(e => {
     const doPasswordsMatch = (passwordInput.value === confirmPasswordInput.value);
 
     if (isEmailValid && isPasswordValid && doPasswordsMatch) {
-        debugger
         let credentials = {
             login: emailInput.value,
             password : passwordInput.value
@@ -29,11 +28,15 @@ $('.signup-form').submit(e => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(credentials)
+        }).then((response) => {
+            if (response.ok) {
+                hideModal('.signup-modal-wrapper');
+                emailInput.value = '';
+                passwordInput.value = '';
+                confirmPasswordInput.value = '';
+                showModal('.signin-modal-wrapper');
+            }
         });
-        hideModal('.signup-modal-wrapper');
-        emailInput.value = '';
-        passwordInput.value = '';
-        confirmPasswordInput.value = '';
     } else {
         switch (true) {
             case !isEmailValid : emailInput.setCustomValidity(emailMessage); break;

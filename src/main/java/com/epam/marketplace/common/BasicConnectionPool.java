@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class BasicConnectionPool implements ConnectionPool {
     private static final String URL = "jdbc:postgresql://localhost:5432/marketplace";
@@ -12,15 +13,15 @@ public class BasicConnectionPool implements ConnectionPool {
     private static final String PASSWORD = "root";
     private static final int INITIAL_POOL_SIZE = 30;
 
-    public static BasicConnectionPool instance;
+    private static BasicConnectionPool instance;
 
-    private List<Connection> connectionPool;
+    private Stack<Connection> readyToUseConnections;
     private List<Connection> usedConnections = new ArrayList<>();
 
     private BasicConnectionPool() throws SQLException {
-        connectionPool = new ArrayList<>(INITIAL_POOL_SIZE);
+        readyToUseConnections = new Stack<>();
         for (int i = 0; i < INITIAL_POOL_SIZE; i++) {
-            connectionPool.add(createConnection());
+            readyToUseConnections.push(createConnection());
         }
     }
 
@@ -31,21 +32,31 @@ public class BasicConnectionPool implements ConnectionPool {
         return instance;
     }
 
+    private static Connection createConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+
     @Override
     public Connection getConnection() {
-        Connection connection = connectionPool.remove(connectionPool.size() - 1);
+        Connection connection = readyToUseConnections.pop();
         usedConnections.add(connection);
-        return connection;
+        return new ConnectionImpl(this, connection);
     }
 
     @Override
     public boolean releaseConnection(Connection connection) {
-        connectionPool.add(connection);
+        readyToUseConnections.push(connection);
         return usedConnections.remove(connection);
     }
 
-    private static Connection createConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    @Override
+    public Stack<Connection> getFreeConnections() {
+        return readyToUseConnections;
+    }
+
+    @Override
+    public List<Connection> getUsedConnections() {
+        return usedConnections;
     }
 
     @Override
@@ -65,6 +76,6 @@ public class BasicConnectionPool implements ConnectionPool {
 
     @Override
     public int getSize() {
-        return connectionPool.size() + usedConnections.size();
+        return readyToUseConnections.size() + usedConnections.size();
     }
 }

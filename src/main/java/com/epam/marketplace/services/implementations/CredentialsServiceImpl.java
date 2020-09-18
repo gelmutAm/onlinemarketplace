@@ -6,45 +6,44 @@ import com.epam.marketplace.services.interfaces.CredentialsService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.sql.SQLException;
 import java.util.List;
 
 @ApplicationScoped
-public class CredentialsServiceImpl implements CredentialsService {
+public class CredentialsServiceImpl implements CredentialsService<Credentials> {
 
     @Inject
-    private CredentialsDao credentialsDao;
+    private CredentialsDao<Credentials> credentialsDao;
 
     public CredentialsServiceImpl() {
     }
 
     @Override
-    public void add(Credentials credentials) throws SQLException {
+    public void add(Credentials credentials) {
         credentialsDao.add(credentials);
     }
 
     @Override
-    public void update(Credentials credentials) throws SQLException {
+    public void update(Credentials credentials) {
         credentialsDao.update(credentials);
     }
 
     @Override
-    public void delete(Credentials credentials) throws SQLException {
+    public void delete(Credentials credentials) {
         credentialsDao.delete(credentials);
     }
 
     @Override
-    public Credentials getById(int id) throws SQLException {
+    public Credentials getById(int id) {
         return credentialsDao.getById(id);
     }
 
     @Override
-    public Credentials getByLogin(String login) throws SQLException {
+    public Credentials getByLogin(String login) {
         return credentialsDao.getByLogin(login);
     }
 
     @Override
-    public List<Credentials> getAll() throws SQLException {
+    public List<Credentials> getAll() {
         return credentialsDao.getAll();
     }
 }

@@ -6,6 +6,7 @@ public class ItemDto {
     private String name;
     private String description;
     private int startPrice;
+    private int currentPrice;
     private String stopDate;
     private String pictureLink;
     private int bidsQty;
@@ -51,6 +52,14 @@ public class ItemDto {
 
     public void setStartPrice(int startPrice) {
         this.startPrice = startPrice;
+    }
+
+    public int getCurrentPrice() {
+        return currentPrice;
+    }
+
+    public void setCurrentPrice(int currentPrice) {
+        this.currentPrice = currentPrice;
     }
 
     public String getStopDate() {

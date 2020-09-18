@@ -2,7 +2,9 @@ package com.epam.marketplace.servlets.api;
 
 import com.epam.marketplace.dto.ItemDto;
 import com.epam.marketplace.dto_services.interfaces.ItemDtoConverter;
+import com.epam.marketplace.models.Bid;
 import com.epam.marketplace.models.Item;
+import com.epam.marketplace.services.interfaces.BidService;
 import com.epam.marketplace.services.interfaces.ItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,10 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/api/marketplace/user/item")
-public class UserItemServlet extends HttpServlet {
+@WebServlet("/api/marketplace/user/bid")
+public class BidServlet extends HttpServlet {
+
+    @Inject
+    private BidService<Bid> bidService;
 
     @Inject
     private ItemService<Item> itemService;
@@ -26,8 +32,17 @@ public class UserItemServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int sellerId = Integer.parseInt(req.getSession().getAttribute("userId").toString());
-        List<Item> items = itemService.getAllBySellerId(sellerId);
+        int userId = Integer.parseInt(req.getSession().getAttribute("userId").toString());
+        List<Bid> userBids = bidService.getAllByUserId(userId);
+
+        List<Item> items = new ArrayList<>();
+        if (userBids != null) {
+            for (Bid bid : userBids) {
+                Item item = itemService.getById(bid.getItemId());
+                items.add(item);
+            }
+        }
+
         List<ItemDto> itemDtos = itemDtoConverter.allItemsToDtos(items);
 
         resp.setContentType("application/json");
@@ -39,12 +54,12 @@ public class UserItemServlet extends HttpServlet {
         String body = req.getReader().lines()
                 .reduce("", (accumulator, actual) -> accumulator + actual);
 
-        Item item = new ObjectMapper().readValue(body, Item.class);
+        Bid bid = new ObjectMapper().readValue(body, Bid.class);
         int userId = Integer.parseInt(req.getSession().getAttribute("userId").toString());
-        item.setSellerId(userId);
-        item.setCurrentPrice(item.getStartPrice());
-        itemService.add(item);
-
-        resp.setStatus(HttpServletResponse.SC_OK);
+        bid.setUserId(userId);
+        bidService.add(bid);
+        Item item = itemService.getById(bid.getItemId());
+        item.setCurrentPrice(bid.getPrice());
+        itemService.update(item);
     }
 }

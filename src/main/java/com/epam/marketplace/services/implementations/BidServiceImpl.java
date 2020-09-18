@@ -6,45 +6,49 @@ import com.epam.marketplace.services.interfaces.BidService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.sql.SQLException;
 import java.util.List;
 
 @ApplicationScoped
-public class BidServiceImpl implements BidService {
+public class BidServiceImpl implements BidService<Bid> {
 
     @Inject
-    private BidDao bidDao;
+    private BidDao<Bid> bidDao;
 
     public BidServiceImpl() {
     }
 
     @Override
-    public void add(Bid bid) throws SQLException {
+    public void add(Bid bid) {
         bidDao.add(bid);
     }
 
     @Override
-    public void update(Bid bid) throws SQLException {
+    public void update(Bid bid) {
         bidDao.update(bid);
     }
 
     @Override
-    public void delete(Bid bid) throws SQLException {
+    public void delete(Bid bid) {
         bidDao.delete(bid);
     }
 
     @Override
-    public Bid getById(int id) throws SQLException {
+    public Bid getById(int id) {
         return bidDao.getById(id);
     }
 
     @Override
-    public int getBidsQtyByItemId(int itemId) throws SQLException {
+    public int getBidsQtyByItemId(int itemId) {
         return bidDao.getBidsQtyByItemId(itemId);
     }
 
     @Override
-    public List<Bid> getAll() throws SQLException {
+    public List<Bid> getAllByUserId(int userId) {
+        return bidDao.getAllByUserId(userId);
+    }
+
+    @Override
+    public List<Bid> getAll() {
         return bidDao.getAll();
     }
 }

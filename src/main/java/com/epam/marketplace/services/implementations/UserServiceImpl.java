@@ -6,45 +6,44 @@ import com.epam.marketplace.services.interfaces.UserService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.sql.SQLException;
 import java.util.List;
 
 @ApplicationScoped
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService<User> {
 
     @Inject
-    private UserDao userDao;
+    private UserDao<User> userDao;
 
     public UserServiceImpl() {
     }
 
     @Override
-    public void add(User user) throws SQLException {
+    public void add(User user) {
         userDao.add(user);
     }
 
     @Override
-    public void update(User user) throws SQLException {
+    public void update(User user) {
         userDao.update(user);
     }
 
     @Override
-    public void delete(User user) throws SQLException {
+    public void delete(User user) {
         userDao.delete(user);
     }
 
     @Override
-    public User getById(int id) throws SQLException {
+    public User getById(int id) {
         return userDao.getById(id);
     }
 
     @Override
-    public User getByCredentialsId(int id) throws SQLException {
+    public User getByCredentialsId(int id) {
         return userDao.getByCredentialsId(id);
     }
 
     @Override
-    public List<User> getAll() throws SQLException {
+    public List<User> getAll() {
         return userDao.getAll();
     }
 }

@@ -15,7 +15,7 @@ public class SignOutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession(false);
 
-        if(httpSession != null){
+        if (httpSession != null) {
             httpSession.invalidate();
         }
 

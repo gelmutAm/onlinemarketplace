@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements UserDao<User> {
     private static final String TABLE_NAME = "marketplace.users";
     private static final String ID_COLUMN_NAME = "user_id";
     private static final String NAME_COLUMN_NAME = "user_name";
@@ -25,60 +25,63 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void add(User user) throws SQLException {
+    public void add(User user) {
         String query = "insert into " +
                 TABLE_NAME +
                 " (" + NAME_COLUMN_NAME + ", " + SURNAME_COLUMN_NAME + ", " + CREDENTIALS_ID_COLUMN_NAME + ")" +
                 " values (?, ?, ?)";
-        Connection connection = connectionPool.getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
             preparedStatement.setInt(3, user.getCredentialsId());
             preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        connectionPool.releaseConnection(connection);
     }
 
     @Override
-    public void update(User user) throws SQLException {
+    public void update(User user) {
         String query = "update " +
                 TABLE_NAME +
                 " set  " + NAME_COLUMN_NAME + " = ?, " +
                 SURNAME_COLUMN_NAME + " = ?, " +
                 CREDENTIALS_ID_COLUMN_NAME + " = ? " +
                 " where " + ID_COLUMN_NAME + " = ?";
-        Connection connection = connectionPool.getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
             preparedStatement.setInt(3, user.getCredentialsId());
             preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        connectionPool.releaseConnection(connection);
     }
 
     @Override
-    public void delete(User user) throws SQLException {
+    public void delete(User user) {
         String query = "delete from " +
                 TABLE_NAME +
                 " where " + ID_COLUMN_NAME + " = ?";
-        Connection connection = connectionPool.getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, user.getId());
             preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        connectionPool.releaseConnection(connection);
     }
 
     @Override
-    public User getById(int id) throws SQLException {
+    public User getById(int id) {
         String query = "select * from " +
                 TABLE_NAME +
                 " where " + ID_COLUMN_NAME + " = ?";
-        Connection connection = connectionPool.getConnection();
         User user = new User();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -87,20 +90,21 @@ public class UserDaoImpl implements UserDao {
                 user.setSurname(resultSet.getString(SURNAME_COLUMN_NAME));
                 user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        connectionPool.releaseConnection(connection);
 
         return user;
     }
 
     @Override
-    public User getByCredentialsId(int id) throws SQLException {
+    public User getByCredentialsId(int id) {
         String query = "select * from " +
                 TABLE_NAME +
                 " where " + CREDENTIALS_ID_COLUMN_NAME + " = ?";
-        Connection connection = connectionPool.getConnection();
         User user = new User();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -109,18 +113,19 @@ public class UserDaoImpl implements UserDao {
                 user.setSurname(resultSet.getString(SURNAME_COLUMN_NAME));
                 user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        connectionPool.releaseConnection(connection);
 
         return user;
     }
 
     @Override
-    public List<User> getAll() throws SQLException {
+    public List<User> getAll() {
         String query = "select * " + TABLE_NAME;
-        Connection connection = connectionPool.getConnection();
         List<User> users = new ArrayList<>();
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = connectionPool.getConnection();
+             Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 User user = new User();
@@ -130,8 +135,9 @@ public class UserDaoImpl implements UserDao {
                 user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
                 users.add(user);
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        connectionPool.releaseConnection(connection);
 
         return users;
     }

@@ -10,14 +10,6 @@ import java.io.IOException;
 @WebFilter("/marketplace/user/*")
 public class AuthenticationFilter implements Filter {
 
-    private ServletContext servletContext;
-
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        servletContext = filterConfig.getServletContext();
-    }
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;

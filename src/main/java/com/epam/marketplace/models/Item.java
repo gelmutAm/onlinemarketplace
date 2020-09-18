@@ -6,6 +6,7 @@ public class Item {
     private String name;
     private String description;
     private int startPrice;
+    private int currentPrice;
     private String stopDate;
     private String pictureLink;
 
@@ -50,6 +51,14 @@ public class Item {
 
     public void setStartPrice(int startPrice) {
         this.startPrice = startPrice;
+    }
+
+    public int getCurrentPrice() {
+        return currentPrice;
+    }
+
+    public void setCurrentPrice(int currentPrice) {
+        this.currentPrice = currentPrice;
     }
 
     public String getStopDate() {

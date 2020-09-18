@@ -45,6 +45,16 @@ function initHandlers() {
         hideModal('.signin-modal-wrapper');
     })
 
+    $('.signin-modal-create-account-a').click(() => {
+        hideModal('.signin-modal-wrapper');
+        showModal('.signup-modal-wrapper');
+    })
+
+    $('.signup-modal-login-a').click(() => {
+        hideModal('.signup-modal-wrapper');
+        showModal('.signin-modal-wrapper');
+    })
+
     $('.signup-modal-backdrop').click(() => {
         hideModal('.signup-modal-wrapper');
     })

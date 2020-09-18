@@ -63,7 +63,7 @@ function initialize() {
         itemCardContentTitle.textContent = item.name;
         itemCardContentTextSeller.textContent = item.seller;
         itemCardContentTextDate.textContent = item.stopDate;
-        itemCardContentPriceText.textContent = '$' + item.startPrice;
+        itemCardContentPriceText.textContent = '$' + item.currentPrice;
         itemCardContentBidsText.textContent = item.bidsQty + ' bids';
 
         itemCard.appendChild(itemCardImageWrapper);

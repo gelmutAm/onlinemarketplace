@@ -1,6 +1,7 @@
 package com.epam.marketplace.servlets.api;
 
 import com.epam.marketplace.models.Credentials;
+import com.epam.marketplace.models.User;
 import com.epam.marketplace.services.interfaces.CredentialsService;
 import com.epam.marketplace.services.interfaces.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,16 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/api/marketplace/login")
 public class LoginServlet extends HttpServlet {
 
     @Inject
-    private CredentialsService credentialsService;
+    private CredentialsService<Credentials> credentialsService;
 
     @Inject
-    private UserService userService;
+    private UserService<User> userService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,12 +30,7 @@ public class LoginServlet extends HttpServlet {
                 .reduce("", (accumulator, actual) -> accumulator + actual);
 
         Credentials requestCredentials = new ObjectMapper().readValue(body, Credentials.class);
-        Credentials actualCredentials = null;
-        try {
-            actualCredentials = credentialsService.getByLogin(requestCredentials.getLogin());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        Credentials actualCredentials = credentialsService.getByLogin(requestCredentials.getLogin());
 
         if (actualCredentials != null) {
             if (requestCredentials.getPassword().equals(actualCredentials.getPassword())) {
@@ -46,12 +41,8 @@ public class LoginServlet extends HttpServlet {
 
                 HttpSession newSession = req.getSession(true);
 
-                Integer userId = null;
-                try {
-                    userId = userService.getByCredentialsId(actualCredentials.getId()).getId();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                Integer userId = userService.getByCredentialsId(actualCredentials.getId()).getId();
+
                 newSession.setAttribute("userId", userId);
                 newSession.setMaxInactiveInterval(24 * 60 * 60);
 
