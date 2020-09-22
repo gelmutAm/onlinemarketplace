@@ -6,6 +6,8 @@ import com.epam.marketplace.services.interfaces.ItemService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.validation.ValidationException;
+import javax.validation.Validator;
 import java.util.List;
 
 @ApplicationScoped
@@ -14,17 +16,28 @@ public class ItemServiceImpl implements ItemService {
     @Inject
     private ItemDao itemDao;
 
+    @Inject
+    private Validator validator;
+
     public ItemServiceImpl() {
     }
 
     @Override
     public void add(Item item) {
-        itemDao.add(item);
+        if (validator.validate(item).isEmpty()) {
+            itemDao.add(item);
+        } else {
+            throw new ValidationException();
+        }
     }
 
     @Override
     public void update(Item item) {
-        itemDao.update(item);
+        if (validator.validate(item).isEmpty()) {
+            itemDao.update(item);
+        } else {
+            throw new ValidationException();
+        }
     }
 
     @Override

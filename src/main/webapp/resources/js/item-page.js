@@ -11,10 +11,11 @@ fetch('/api/marketplace/item/' + id).then(function (response) {
             itemBiddingContentBidButtonClick();
         });
     } else {
-        var para = document.createElement('p');
-        para.textContent = 'Nothing found!';
-        contentPadding.appendChild(para);
-        console.log('Network request for items.json failed with response ' + response.status + ': ' + response.statusText);
+        const contentPaddingSelector = '.content-padding';
+        $(contentPaddingSelector)
+            .append('<h1 class=not-found-header>404</h1>')
+            .append('<p class="not-found-p">Sorry! We can\'t find what you\'re looking for.</p>');
+        console.log('Network request for item failed with response ' + response.status + ': ' + response.statusText);
     }
 })
 
@@ -26,13 +27,7 @@ function initialize() {
             contentPadding.removeChild(contentPadding.firstChild);
         }
 
-        if (item.name === null) {
-            var para = document.createElement('p');
-            para.textContent = 'Nothing found!';
-            contentPadding.appendChild(para);
-        } else {
-             showItem(item);
-        }
+        showItem(item);
     }
 
     function showItem(item) {

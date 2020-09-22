@@ -9,6 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @ApplicationScoped
 public class ItemDaoImpl implements ItemDao {
@@ -103,7 +104,7 @@ public class ItemDaoImpl implements ItemDao {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 item.setId(resultSet.getInt(ID_COLUMN_NAME));
                 item.setSellerId(resultSet.getInt(SELLER_ID_COLUMN_NAME));
                 item.setName(resultSet.getString(ITEM_NAME_COLUMN_NAME));
@@ -112,6 +113,8 @@ public class ItemDaoImpl implements ItemDao {
                 item.setCurrentPrice(resultSet.getInt(CURRENT_PRICE_COLUMN_NAME));
                 item.setStopDate(resultSet.getString(STOP_DATE_COLUMN_NAME));
                 item.setPictureLink(resultSet.getString(PICTURE_LINK_COLUMN_NAME));
+            } else {
+                throw new NoSuchElementException();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

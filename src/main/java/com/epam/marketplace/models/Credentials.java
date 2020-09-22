@@ -1,8 +1,17 @@
 package com.epam.marketplace.models;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+
 public class Credentials {
+
     private int id;
+
+    @Email
     private String login;
+
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$")
     private String password;
 
     public Credentials() {

@@ -28,7 +28,7 @@ public class ItemServlet extends HttpServlet {
         int id = getIdFromPath(req.getPathInfo());
         Item item = itemService.getById(id);
         ItemDto itemDto = itemDtoConverter.itemToDto(item);
-
+        resp.setStatus(HttpServletResponse.SC_OK);
         resp.setContentType("application/json");
         resp.getWriter().write(new ObjectMapper().writeValueAsString(itemDto));
     }

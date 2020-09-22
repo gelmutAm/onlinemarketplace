@@ -9,6 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @ApplicationScoped
 public class BidDaoImpl implements BidDao {
@@ -84,11 +85,13 @@ public class BidDaoImpl implements BidDao {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 bid.setId(resultSet.getInt(ID_COLUMN_NAME));
                 bid.setUserId(resultSet.getInt(USER_ID_COLUMN_NAME));
                 bid.setItemId(resultSet.getInt(ITEM_ID_COLUMN_NAME));
                 bid.setPrice(resultSet.getInt(PRICE_COLUMN_NAME));
+            } else {
+                throw new NoSuchElementException();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -117,7 +120,6 @@ public class BidDaoImpl implements BidDao {
         return bidsQty;
     }
 
-    //select user_id, item_id, max(bid_price) from bids group by user_id, item_id having user_id = 4
     @Override
     public List<Bid> getAllByUserId(int userId) {
         String query = "select " + USER_ID_COLUMN_NAME + ", " +

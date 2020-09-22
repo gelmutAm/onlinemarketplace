@@ -9,6 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @ApplicationScoped
 public class CredentialsDaoImpl implements CredentialsDao {
@@ -81,10 +82,12 @@ public class CredentialsDaoImpl implements CredentialsDao {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 credentials.setId(resultSet.getInt(ID_COLUMN_NAME));
                 credentials.setLogin(resultSet.getString(LOGIN_COLUMN_NAME));
                 credentials.setPassword(resultSet.getString(PASSWORD_COLUMN_NAME));
+            } else {
+                throw new NoSuchElementException();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -103,10 +106,12 @@ public class CredentialsDaoImpl implements CredentialsDao {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 credentials.setId(resultSet.getInt(ID_COLUMN_NAME));
                 credentials.setLogin(resultSet.getString(LOGIN_COLUMN_NAME));
                 credentials.setPassword(resultSet.getString(PASSWORD_COLUMN_NAME));
+            } else {
+                throw new NoSuchElementException();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -8,7 +8,7 @@ fetch('/api/marketplace/all-items').then(function (response) {
             itemCardClickListener();
         });
     } else {
-        console.log('Network request for items.json failed with response ' + response.status + ': ' + response.statusText);
+        console.log('Network request for items failed with response ' + response.status + ': ' + response.statusText);
     }
 })
 
@@ -85,7 +85,7 @@ function initialize() {
 
 function itemCardClickListener() {
     $('.item-card').click(function(e) {
-            let id = $(this).attr('id');
-            window.location.href = '/marketplace/item/' + id;
+        let id = $(this).attr('id');
+        window.location.href = '/marketplace/item/' + id;
     });
 }

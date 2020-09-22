@@ -2,10 +2,14 @@ package com.epam.marketplace.services.implementations;
 
 import com.epam.marketplace.dao.interfaces.BidDao;
 import com.epam.marketplace.models.Bid;
+import com.epam.marketplace.models.Item;
 import com.epam.marketplace.services.interfaces.BidService;
+import com.epam.marketplace.services.interfaces.ItemService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.validation.ValidationException;
+import javax.validation.Validator;
 import java.util.List;
 
 @ApplicationScoped
@@ -14,17 +18,35 @@ public class BidServiceImpl implements BidService {
     @Inject
     private BidDao bidDao;
 
+    @Inject
+    private ItemService itemService;
+
+    @Inject
+    private Validator validator;
+
     public BidServiceImpl() {
     }
 
     @Override
     public void add(Bid bid) {
-        bidDao.add(bid);
+        Item item = itemService.getById(bid.getItemId());
+
+        if (validator.validate(bid).isEmpty() && bid.getPrice() > item.getCurrentPrice()) {
+            bidDao.add(bid);
+            item.setCurrentPrice(bid.getPrice());
+            itemService.update(item);
+        } else {
+            throw new ValidationException();
+        }
     }
 
     @Override
     public void update(Bid bid) {
-        bidDao.update(bid);
+        if (validator.validate(bid).isEmpty()) {
+            bidDao.update(bid);
+        } else {
+            throw new ValidationException();
+        }
     }
 
     @Override

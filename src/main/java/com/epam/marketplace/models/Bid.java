@@ -1,9 +1,19 @@
 package com.epam.marketplace.models;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
+
 public class Bid {
+
     private int id;
+
+    @Positive
     private int userId;
+
+    @Positive
     private int itemId;
+
+    @Positive
     private int price;
 
     public Bid() {

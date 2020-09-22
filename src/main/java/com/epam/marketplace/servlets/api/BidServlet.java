@@ -58,8 +58,5 @@ public class BidServlet extends HttpServlet {
         int userId = Integer.parseInt(req.getSession().getAttribute("userId").toString());
         bid.setUserId(userId);
         bidService.add(bid);
-        Item item = itemService.getById(bid.getItemId());
-        item.setCurrentPrice(bid.getPrice());
-        itemService.update(item);
     }
 }

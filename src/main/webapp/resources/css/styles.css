@@ -666,6 +666,7 @@ template {
   all: unset;
   width: 100%;
   padding-right: 10px;
+  font-size: 18px;
 }
 
 .app-header-search-button {
@@ -1332,6 +1333,20 @@ template {
 
 .signup-modal-login-a:hover {
     cursor: pointer;
+}
+
+.not-found-header {
+    all: unset;
+    font-size: 100px;
+    font-weight: bold;
+    line-height: 100px;
+    margin-top: 70px;
+}
+
+.not-found-p {
+    all: unset;
+    font-size: 16px;
+    margin-top: 10px;
 }
 
 /*# sourceMappingURL=styles.css.map */

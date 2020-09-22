@@ -1,11 +1,20 @@
 package com.epam.marketplace.models;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+
 public class User {
+
     private int id;
+
+    @Pattern(regexp = "^[a-zA-Z ]{1,30}$")
     private String name;
+
+    @Pattern(regexp = "^[a-zA-Z ]{1,30}$")
     private String surname;
+
+    @Positive
     private int credentialsId;
-    private Integer sessionId;
 
     public User() {
     }
@@ -41,13 +50,5 @@ public class User {
 
     public void setCredentialsId(int credentialsId) {
         this.credentialsId = credentialsId;
-    }
-
-    public Integer getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(Integer sessionId) {
-        this.sessionId = sessionId;
     }
 }

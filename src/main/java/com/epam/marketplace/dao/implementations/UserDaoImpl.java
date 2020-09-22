@@ -9,6 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @ApplicationScoped
 public class UserDaoImpl implements UserDao {
@@ -84,11 +85,13 @@ public class UserDaoImpl implements UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 user.setId(resultSet.getInt(ID_COLUMN_NAME));
                 user.setName(resultSet.getString(NAME_COLUMN_NAME));
                 user.setSurname(resultSet.getString(SURNAME_COLUMN_NAME));
                 user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
+            } else {
+                throw new NoSuchElementException();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -107,11 +110,13 @@ public class UserDaoImpl implements UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 user.setId(resultSet.getInt(ID_COLUMN_NAME));
                 user.setName(resultSet.getString(NAME_COLUMN_NAME));
                 user.setSurname(resultSet.getString(SURNAME_COLUMN_NAME));
                 user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
+            } else {
+                throw new NoSuchElementException();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

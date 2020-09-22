@@ -1,9 +1,7 @@
 package com.epam.marketplace.servlets.api;
 
 import com.epam.marketplace.models.Credentials;
-import com.epam.marketplace.models.User;
 import com.epam.marketplace.services.interfaces.CredentialsService;
-import com.epam.marketplace.services.interfaces.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.inject.Inject;
@@ -20,9 +18,6 @@ public class SignUpServlet extends HttpServlet {
     @Inject
     private CredentialsService credentialsService;
 
-    @Inject
-    private UserService userService;
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String body = req.getReader().lines()
@@ -30,9 +25,5 @@ public class SignUpServlet extends HttpServlet {
 
         Credentials credentials = new ObjectMapper().readValue(body, Credentials.class);
         credentialsService.add(credentials);
-        int credentialsId = credentialsService.getByLogin(credentials.getLogin()).getId();
-        User user = new User();
-        user.setCredentialsId(credentialsId);
-        userService.add(user);
     }
 }

@@ -6,6 +6,8 @@ import com.epam.marketplace.services.interfaces.UserService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.validation.ValidationException;
+import javax.validation.Validator;
 import java.util.List;
 
 @ApplicationScoped
@@ -14,17 +16,28 @@ public class UserServiceImpl implements UserService {
     @Inject
     private UserDao userDao;
 
+    @Inject
+    private Validator validator;
+
     public UserServiceImpl() {
     }
 
     @Override
     public void add(User user) {
-        userDao.add(user);
+        if (validator.validate(user).isEmpty()) {
+            userDao.add(user);
+        } else {
+            throw new ValidationException();
+        }
     }
 
     @Override
     public void update(User user) {
-        userDao.update(user);
+        if (validator.validate(user).isEmpty()) {
+            userDao.update(user);
+        } else {
+            throw new ValidationException();
+        }
     }
 
     @Override

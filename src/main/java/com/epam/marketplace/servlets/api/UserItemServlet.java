@@ -44,7 +44,5 @@ public class UserItemServlet extends HttpServlet {
         item.setSellerId(userId);
         item.setCurrentPrice(item.getStartPrice());
         itemService.add(item);
-
-        resp.setStatus(HttpServletResponse.SC_OK);
     }
 }

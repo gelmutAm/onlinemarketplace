@@ -31,24 +31,20 @@ public class LoginServlet extends HttpServlet {
         Credentials requestCredentials = new ObjectMapper().readValue(body, Credentials.class);
         Credentials actualCredentials = credentialsService.getByLogin(requestCredentials.getLogin());
 
-        if (actualCredentials != null) {
-            if (requestCredentials.getPassword().equals(actualCredentials.getPassword())) {
-                HttpSession oldSession = req.getSession(false);
-                if (oldSession != null) {
-                    oldSession.invalidate();
-                }
-
-                HttpSession newSession = req.getSession(true);
-
-                Integer userId = userService.getByCredentialsId(actualCredentials.getId()).getId();
-
-                newSession.setAttribute("userId", userId);
-                newSession.setMaxInactiveInterval(24 * 60 * 60);
-
-                resp.setStatus(HttpServletResponse.SC_OK);
-            } else {
-                resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        if (requestCredentials.getPassword().equals(actualCredentials.getPassword())) {
+            HttpSession oldSession = req.getSession(false);
+            if (oldSession != null) {
+                oldSession.invalidate();
             }
+
+            HttpSession newSession = req.getSession(true);
+
+            Integer userId = userService.getByCredentialsId(actualCredentials.getId()).getId();
+
+            newSession.setAttribute("userId", userId);
+            newSession.setMaxInactiveInterval(24 * 60 * 60);
+
+            resp.setStatus(HttpServletResponse.SC_OK);
         } else {
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
