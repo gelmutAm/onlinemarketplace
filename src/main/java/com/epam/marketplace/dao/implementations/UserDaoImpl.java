@@ -9,7 +9,6 @@ import javax.enterprise.context.ApplicationScoped;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @ApplicationScoped
 public class UserDaoImpl implements UserDao {
@@ -84,13 +83,14 @@ public class UserDaoImpl implements UserDao {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                user = new User();
-                user.setId(resultSet.getInt(ID_COLUMN_NAME));
-                user.setName(resultSet.getString(NAME_COLUMN_NAME));
-                user.setSurname(resultSet.getString(SURNAME_COLUMN_NAME));
-                user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt(ID_COLUMN_NAME));
+                    user.setName(resultSet.getString(NAME_COLUMN_NAME));
+                    user.setSurname(resultSet.getString(SURNAME_COLUMN_NAME));
+                    user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -108,13 +108,14 @@ public class UserDaoImpl implements UserDao {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                user = new User();
-                user.setId(resultSet.getInt(ID_COLUMN_NAME));
-                user.setName(resultSet.getString(NAME_COLUMN_NAME));
-                user.setSurname(resultSet.getString(SURNAME_COLUMN_NAME));
-                user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt(ID_COLUMN_NAME));
+                    user.setName(resultSet.getString(NAME_COLUMN_NAME));
+                    user.setSurname(resultSet.getString(SURNAME_COLUMN_NAME));
+                    user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -129,14 +130,15 @@ public class UserDaoImpl implements UserDao {
         List<User> users = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                User user = new User();
-                user.setId(resultSet.getInt(ID_COLUMN_NAME));
-                user.setName(resultSet.getString(NAME_COLUMN_NAME));
-                user.setSurname(resultSet.getString(SURNAME_COLUMN_NAME));
-                user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
-                users.add(user);
+            try (ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+                    User user = new User();
+                    user.setId(resultSet.getInt(ID_COLUMN_NAME));
+                    user.setName(resultSet.getString(NAME_COLUMN_NAME));
+                    user.setSurname(resultSet.getString(SURNAME_COLUMN_NAME));
+                    user.setCredentialsId(resultSet.getInt(CREDENTIALS_ID_COLUMN_NAME));
+                    users.add(user);
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

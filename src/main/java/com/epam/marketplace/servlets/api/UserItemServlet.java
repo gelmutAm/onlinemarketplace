@@ -40,7 +40,7 @@ public class UserItemServlet extends HttpServlet {
         String body = req.getReader().lines()
                 .reduce("", (accumulator, actual) -> accumulator + actual);
 
-        Item item = new ObjectMapper().readValue(body, Item.class);
+        Item item = new ObjectMapper().findAndRegisterModules().readValue(body, Item.class);
         int userId = Integer.parseInt(req.getSession().getAttribute("userId").toString());
         item.setSellerId(userId);
         item.setCurrentPrice(item.getStartPrice());

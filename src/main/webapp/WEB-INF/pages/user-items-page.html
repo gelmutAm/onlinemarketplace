@@ -50,23 +50,23 @@
                     <form class="item-form">
                         <div class="item-info-modal-input-container">
                             <label for="name">Name</label>
-                            <input id="name" onkeypress="resetValidity()" type="text">
+                            <input id="name" onkeypress="resetItemValidity()" type="text">
                         </div>
                         <div class="item-info-modal-input-container">
                             <label for="pic-link">Picture Link</label>
-                            <input id="pic-link" onkeypress="resetValidity()">
+                            <input id="pic-link" onkeypress="resetItemValidity()">
                         </div>
                         <div class="item-info-modal-input-container">
                             <label for="start-price">Start Price</label>
-                            <input id="start-price" onkeypress="resetValidity()" type="text">
+                            <input id="start-price" onkeypress="resetItemValidity()" type="text">
                         </div>
                         <div class="item-info-modal-input-container">
                             <label for="stop-date">Stop Date</label>
-                            <input id="stop-date" onkeypress="resetValidity()">
+                            <input id="stop-date" type="datetime-local">
                         </div>
                         <div class="item-info-modal-input-container">
                             <label for="description">Description</label>
-                            <textarea id="description" rows="2" cols="7" onkeypress="resetValidity()"></textarea>
+                            <textarea id="description" rows="2" cols="7" onkeypress="resetItemValidity()"></textarea>
                         </div>
                         <button type="submit" class="add-item-modal-button">Add Item</button>
                     </form>

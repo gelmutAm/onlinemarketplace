@@ -2,7 +2,6 @@ package com.epam.marketplace.models;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 
 public class Credentials {
 

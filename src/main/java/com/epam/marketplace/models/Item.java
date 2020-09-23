@@ -1,6 +1,8 @@
 package com.epam.marketplace.models;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import java.time.OffsetDateTime;
 
 public class Item {
 
@@ -21,7 +23,7 @@ public class Item {
     @Positive
     private int currentPrice;
 
-    private String stopDate;
+    private OffsetDateTime stopDate;
 
     private String pictureLink;
 
@@ -76,11 +78,11 @@ public class Item {
         this.currentPrice = currentPrice;
     }
 
-    public String getStopDate() {
+    public OffsetDateTime getStopDate() {
         return stopDate;
     }
 
-    public void setStopDate(String stopDate) {
+    public void setStopDate(OffsetDateTime stopDate) {
         this.stopDate = stopDate;
     }
 

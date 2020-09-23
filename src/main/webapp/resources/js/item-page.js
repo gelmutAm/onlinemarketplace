@@ -71,7 +71,7 @@ function initialize() {
         itemBiddingContentInputButtonContainerLabel.setAttribute('for', 'bid');
         itemBiddingContentInputButtonContainerInput.setAttribute('type', 'text');
         itemBiddingContentInputButtonContainerInput.setAttribute('id', 'bid');
-        itemBiddingContentInputButtonContainerInput.setAttribute('onkeypress', 'resetValidity()')
+        itemBiddingContentInputButtonContainerInput.setAttribute('onkeypress', 'resetBidValidity()')
         itemBiddingContentBidButton.setAttribute('class', 'item-bidding-content-bid-button');
         itemBiddingContentBidButton.setAttribute('type', 'submit');
         itemDescriptionContainer.setAttribute('class', 'item-description-container');
@@ -165,6 +165,6 @@ function itemBiddingContentBidButtonClick() {
     })
 }
 
-function resetValidity() {
+function resetBidValidity() {
     $('#bid')[0].setCustomValidity('');
 }

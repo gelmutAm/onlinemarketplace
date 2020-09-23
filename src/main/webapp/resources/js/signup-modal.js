@@ -4,7 +4,7 @@ const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 $('.signup-form').submit(e => {
     e.preventDefault();
 
-    const emailMessage = 'Email is not valid!';
+    const emailMessage = 'Incorrect email.';
     const passwordMessage = 'Password must be at list 8 characters including a number, uppercase and lowercase letters.';
     const confirmPasswordMessage = 'Please make sure your passwords match.';
 
@@ -47,7 +47,7 @@ $('.signup-form').submit(e => {
     }    
 })
 
-function resetValidity() {
+function resetSignUpValidity() {
     $('#signup-login')[0].setCustomValidity('');
     $('#signup-password')[0].setCustomValidity('');
     $('#signup-confirm-password')[0].setCustomValidity('');

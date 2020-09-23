@@ -1039,6 +1039,7 @@ template {
   border: 1px solid rgba(0, 0, 0, 0.274);
   font-size: 18px;
   box-sizing: border-box;
+  padding-top: 8px;
 }
 
 .item-info-modal-input-container input:focus {

@@ -7,9 +7,9 @@ import com.epam.marketplace.models.Item;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.sql.*;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @ApplicationScoped
 public class ItemDaoImpl implements ItemDao {
@@ -44,7 +44,7 @@ public class ItemDaoImpl implements ItemDao {
             preparedStatement.setString(3, item.getDescription());
             preparedStatement.setInt(4, item.getStartPrice());
             preparedStatement.setInt(5, item.getCurrentPrice());
-            preparedStatement.setString(6, item.getStopDate());
+            preparedStatement.setObject(6, item.getStopDate());
             preparedStatement.setString(7, item.getPictureLink());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -71,7 +71,7 @@ public class ItemDaoImpl implements ItemDao {
             preparedStatement.setString(3, item.getDescription());
             preparedStatement.setInt(4, item.getStartPrice());
             preparedStatement.setInt(5, item.getCurrentPrice());
-            preparedStatement.setString(6, item.getStopDate());
+            preparedStatement.setObject(6, item.getStopDate());
             preparedStatement.setString(7, item.getPictureLink());
             preparedStatement.setInt(8, item.getId());
             preparedStatement.executeUpdate();
@@ -103,17 +103,18 @@ public class ItemDaoImpl implements ItemDao {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                item = new Item();
-                item.setId(resultSet.getInt(ID_COLUMN_NAME));
-                item.setSellerId(resultSet.getInt(SELLER_ID_COLUMN_NAME));
-                item.setName(resultSet.getString(ITEM_NAME_COLUMN_NAME));
-                item.setDescription(resultSet.getString(ITEM_DESCRIPTION_COLUMN_NAME));
-                item.setStartPrice(resultSet.getInt(START_PRICE_COLUMN_NAME));
-                item.setCurrentPrice(resultSet.getInt(CURRENT_PRICE_COLUMN_NAME));
-                item.setStopDate(resultSet.getString(STOP_DATE_COLUMN_NAME));
-                item.setPictureLink(resultSet.getString(PICTURE_LINK_COLUMN_NAME));
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    item = new Item();
+                    item.setId(resultSet.getInt(ID_COLUMN_NAME));
+                    item.setSellerId(resultSet.getInt(SELLER_ID_COLUMN_NAME));
+                    item.setName(resultSet.getString(ITEM_NAME_COLUMN_NAME));
+                    item.setDescription(resultSet.getString(ITEM_DESCRIPTION_COLUMN_NAME));
+                    item.setStartPrice(resultSet.getInt(START_PRICE_COLUMN_NAME));
+                    item.setCurrentPrice(resultSet.getInt(CURRENT_PRICE_COLUMN_NAME));
+                    item.setStopDate(resultSet.getObject(STOP_DATE_COLUMN_NAME, OffsetDateTime.class));
+                    item.setPictureLink(resultSet.getString(PICTURE_LINK_COLUMN_NAME));
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -131,19 +132,20 @@ public class ItemDaoImpl implements ItemDao {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Item item = new Item();
-                item.setId(resultSet.getInt(ID_COLUMN_NAME));
-                item.setSellerId(resultSet.getInt(SELLER_ID_COLUMN_NAME));
-                item.setName(resultSet.getString(ITEM_NAME_COLUMN_NAME));
-                item.setDescription(resultSet.getString(ITEM_DESCRIPTION_COLUMN_NAME));
-                item.setStartPrice(resultSet.getInt(START_PRICE_COLUMN_NAME));
-                item.setCurrentPrice(resultSet.getInt(CURRENT_PRICE_COLUMN_NAME));
-                item.setStopDate(resultSet.getString(STOP_DATE_COLUMN_NAME));
-                item.setPictureLink(resultSet.getString(PICTURE_LINK_COLUMN_NAME));
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Item item = new Item();
+                    item.setId(resultSet.getInt(ID_COLUMN_NAME));
+                    item.setSellerId(resultSet.getInt(SELLER_ID_COLUMN_NAME));
+                    item.setName(resultSet.getString(ITEM_NAME_COLUMN_NAME));
+                    item.setDescription(resultSet.getString(ITEM_DESCRIPTION_COLUMN_NAME));
+                    item.setStartPrice(resultSet.getInt(START_PRICE_COLUMN_NAME));
+                    item.setCurrentPrice(resultSet.getInt(CURRENT_PRICE_COLUMN_NAME));
+                    item.setStopDate(resultSet.getObject(STOP_DATE_COLUMN_NAME, OffsetDateTime.class));
+                    item.setPictureLink(resultSet.getString(PICTURE_LINK_COLUMN_NAME));
 
-                items.add(item);
+                    items.add(item);
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -158,19 +160,20 @@ public class ItemDaoImpl implements ItemDao {
         List<Item> items = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                Item item = new Item();
-                item.setId(resultSet.getInt(ID_COLUMN_NAME));
-                item.setSellerId(resultSet.getInt(SELLER_ID_COLUMN_NAME));
-                item.setName(resultSet.getString(ITEM_NAME_COLUMN_NAME));
-                item.setDescription(resultSet.getString(ITEM_DESCRIPTION_COLUMN_NAME));
-                item.setStartPrice(resultSet.getInt(START_PRICE_COLUMN_NAME));
-                item.setCurrentPrice(resultSet.getInt(CURRENT_PRICE_COLUMN_NAME));
-                item.setStopDate(resultSet.getString(STOP_DATE_COLUMN_NAME));
-                item.setPictureLink(resultSet.getString(PICTURE_LINK_COLUMN_NAME));
+            try (ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+                    Item item = new Item();
+                    item.setId(resultSet.getInt(ID_COLUMN_NAME));
+                    item.setSellerId(resultSet.getInt(SELLER_ID_COLUMN_NAME));
+                    item.setName(resultSet.getString(ITEM_NAME_COLUMN_NAME));
+                    item.setDescription(resultSet.getString(ITEM_DESCRIPTION_COLUMN_NAME));
+                    item.setStartPrice(resultSet.getInt(START_PRICE_COLUMN_NAME));
+                    item.setCurrentPrice(resultSet.getInt(CURRENT_PRICE_COLUMN_NAME));
+                    item.setStopDate(resultSet.getObject(STOP_DATE_COLUMN_NAME, OffsetDateTime.class));
+                    item.setPictureLink(resultSet.getString(PICTURE_LINK_COLUMN_NAME));
 
-                items.add(item);
+                    items.add(item);
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

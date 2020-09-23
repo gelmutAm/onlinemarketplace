@@ -1,6 +1,5 @@
 package com.epam.marketplace.models;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 
 public class Bid {

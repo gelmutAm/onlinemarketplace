@@ -62,7 +62,7 @@ function initialize() {
         itemCardImage.src = item.pictureLink;
         itemCardContentTitle.textContent = item.name;
         itemCardContentTextSeller.textContent = item.seller;
-        itemCardContentTextDate.textContent = item.stopDate;
+        itemCardContentTextDate.textContent = convertStopDate(item.stopDate);
         itemCardContentPriceText.textContent = '$' + item.currentPrice;
         itemCardContentBidsText.textContent = item.bidsQty + ' bids';
 
@@ -88,4 +88,19 @@ function itemCardClickListener() {
         let id = $(this).attr('id');
         window.location.href = '/marketplace/item/' + id;
     });
+}
+
+function convertStopDate(stopDate) {
+    let date = new Date(stopDate);
+    let today = new Date();
+    let result = null;
+    let daysDifference = (date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
+    let minDaysCount = 6;
+    if (daysDifference < minDaysCount) {
+        result = Math.trunc(daysDifference) + " " + "Days" + " " + "Left"
+    } else {
+        result = date.toDateString().substr(4, 6);
+    }
+
+    return result;
 }

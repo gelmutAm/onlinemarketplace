@@ -32,7 +32,7 @@ public class ItemDtoConverterImpl implements ItemDtoConverter {
         itemDto.setDescription(item.getDescription());
         itemDto.setStartPrice(item.getStartPrice());
         itemDto.setCurrentPrice(item.getCurrentPrice());
-        itemDto.setStopDate(item.getStopDate());
+        itemDto.setStopDate(item.getStopDate().toString());
         itemDto.setPictureLink(item.getPictureLink());
         itemDto.setBidsQty(bidService.getBidsQtyByItemId(item.getId()));
 

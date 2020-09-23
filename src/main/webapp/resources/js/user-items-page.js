@@ -100,12 +100,10 @@ function itemCardClickListener() {
 }
 
 $('.item-form').submit(e => {
-
     e.preventDefault();
 
-    const nameMessage = 'Name can\'t be empty!';
-    const startPriceMessage = 'Start Price can\'t be empty!';
-    const stopDateMessage = 'Stop Date format must match \'dd/MM/yyyy hh:mm:ss\'.';
+    const nameMessage = 'Incorrect name.';
+    const startPriceMessage = 'Incorrect price.';
 
     const nameInput = e.target[0];
     const pictureLinkInput = e.target[1];
@@ -115,14 +113,15 @@ $('.item-form').submit(e => {
 
     const isNameValid = NAME_REGEX.test(nameInput.value);
     const isStartPriceValid = START_PRICE_REGEX.test(startPriceInput.value);
-    const isStopDateValid = STOP_DATE_REGEX.test(stopDateInput.value);
 
-    if (isNameValid && isStartPriceValid && isStopDateValid) {
+    if (isNameValid && isStartPriceValid) {
+        let date = new Date(stopDateInput.value);
+        let dateString = date.toISOString();
         let item = {
             name: nameInput.value,
             pictureLink: pictureLinkInput.value,
             startPrice: startPriceInput.value,
-            stopDate: stopDateInput.value,
+            stopDate: dateString,
             description: descriptionInput.value,
         }
         fetch('/api/marketplace/user/item', {
@@ -142,7 +141,6 @@ $('.item-form').submit(e => {
 
             nameInput.value = '';
             startPriceInput.value = '';
-            stopDateInput.value = '';
         });
     } else {
         switch (true) {
@@ -154,10 +152,9 @@ $('.item-form').submit(e => {
     }    
 })
 
-function resetValidity() {
+function resetItemValidity() {
     $('#name')[0].setCustomValidity('');
     $('#start-price')[0].setCustomValidity('');
-    $('#stop-date')[0].setCustomValidity('');
 }
 
 function getDate() {
