@@ -2,6 +2,7 @@ package com.epam.marketplace.servlets.api;
 
 import com.epam.marketplace.dto.ItemDto;
 import com.epam.marketplace.dto_services.interfaces.ItemDtoConverter;
+import com.epam.marketplace.exceptions.ValidationException;
 import com.epam.marketplace.models.Item;
 import com.epam.marketplace.services.interfaces.ItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,6 +44,11 @@ public class UserItemServlet extends HttpServlet {
         int userId = Integer.parseInt(req.getSession().getAttribute("userId").toString());
         item.setSellerId(userId);
         item.setCurrentPrice(item.getStartPrice());
-        itemService.add(item);
+        try {
+            itemService.add(item);
+        } catch (ValidationException e) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            e.printStackTrace();
+        }
     }
 }

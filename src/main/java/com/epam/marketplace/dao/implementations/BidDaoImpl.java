@@ -80,18 +80,17 @@ public class BidDaoImpl implements BidDao {
         String query = "select * from " +
                 TABLE_NAME +
                 " where " + ID_COLUMN_NAME + " = ?";
-        Bid bid = new Bid();
+        Bid bid = null;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                bid = new Bid();
                 bid.setId(resultSet.getInt(ID_COLUMN_NAME));
                 bid.setUserId(resultSet.getInt(USER_ID_COLUMN_NAME));
                 bid.setItemId(resultSet.getInt(ITEM_ID_COLUMN_NAME));
                 bid.setPrice(resultSet.getInt(PRICE_COLUMN_NAME));
-            } else {
-                throw new NoSuchElementException();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -1,12 +1,12 @@
 package com.epam.marketplace.services.implementations;
 
 import com.epam.marketplace.dao.interfaces.UserDao;
+import com.epam.marketplace.exceptions.ValidationException;
 import com.epam.marketplace.models.User;
 import com.epam.marketplace.services.interfaces.UserService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.validation.ValidationException;
 import javax.validation.Validator;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void add(User user) {
+    public void add(User user) throws ValidationException {
         if (validator.validate(user).isEmpty()) {
             userDao.add(user);
         } else {
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user) throws ValidationException {
         if (validator.validate(user).isEmpty()) {
             userDao.update(user);
         } else {

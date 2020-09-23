@@ -8,9 +8,10 @@ $('.signin-form').submit(e => {
     const emailInput = e.target[0];
     const passwordInput = e.target[1];
 
-    const isEmailValid = (emailInput.value.length === 0) ? false : true;
-    const isPasswordValid = (passwordInput.value.length === 0) ? false : true;
+    const isEmailValid = emailInput.value.length !== 0;
+    const isPasswordValid = passwordInput.value.length !== 0;
 
+    debugger
     if (isEmailValid && isPasswordValid) {
         let credentials = {
             login: emailInput.value,
@@ -47,7 +48,7 @@ $('.signin-form').submit(e => {
     }
 })
 
-function resetValidity() {
+function resetLoginValidity() {
     $('#signin-login')[0].setCustomValidity('');
     $('#signin-password')[0].setCustomValidity('');
 }

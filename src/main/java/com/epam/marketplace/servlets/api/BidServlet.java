@@ -2,6 +2,7 @@ package com.epam.marketplace.servlets.api;
 
 import com.epam.marketplace.dto.ItemDto;
 import com.epam.marketplace.dto_services.interfaces.ItemDtoConverter;
+import com.epam.marketplace.exceptions.ValidationException;
 import com.epam.marketplace.models.Bid;
 import com.epam.marketplace.models.Item;
 import com.epam.marketplace.services.interfaces.BidService;
@@ -57,6 +58,11 @@ public class BidServlet extends HttpServlet {
         Bid bid = new ObjectMapper().readValue(body, Bid.class);
         int userId = Integer.parseInt(req.getSession().getAttribute("userId").toString());
         bid.setUserId(userId);
-        bidService.add(bid);
+        try {
+            bidService.add(bid);
+        } catch (ValidationException e) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            e.printStackTrace();
+        }
     }
 }

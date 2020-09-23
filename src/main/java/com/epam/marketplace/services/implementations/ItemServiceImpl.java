@@ -1,12 +1,12 @@
 package com.epam.marketplace.services.implementations;
 
 import com.epam.marketplace.dao.interfaces.ItemDao;
+import com.epam.marketplace.exceptions.ValidationException;
 import com.epam.marketplace.models.Item;
 import com.epam.marketplace.services.interfaces.ItemService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.validation.ValidationException;
 import javax.validation.Validator;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void add(Item item) {
+    public void add(Item item) throws ValidationException {
         if (validator.validate(item).isEmpty()) {
             itemDao.add(item);
         } else {
@@ -32,7 +32,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void update(Item item) {
+    public void update(Item item) throws ValidationException {
         if (validator.validate(item).isEmpty()) {
             itemDao.update(item);
         } else {

@@ -77,17 +77,16 @@ public class CredentialsDaoImpl implements CredentialsDao {
         String query = "select * from " +
                 TABLE_NAME +
                 " where " + ID_COLUMN_NAME + " = ?";
-        Credentials credentials = new Credentials();
+        Credentials credentials = null;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                credentials = new Credentials();
                 credentials.setId(resultSet.getInt(ID_COLUMN_NAME));
                 credentials.setLogin(resultSet.getString(LOGIN_COLUMN_NAME));
                 credentials.setPassword(resultSet.getString(PASSWORD_COLUMN_NAME));
-            } else {
-                throw new NoSuchElementException();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -101,17 +100,16 @@ public class CredentialsDaoImpl implements CredentialsDao {
         String query = "select * from " +
                 TABLE_NAME +
                 " where " + LOGIN_COLUMN_NAME + " = ?";
-        Credentials credentials = new Credentials();
+        Credentials credentials = null;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                credentials = new Credentials();
                 credentials.setId(resultSet.getInt(ID_COLUMN_NAME));
                 credentials.setLogin(resultSet.getString(LOGIN_COLUMN_NAME));
                 credentials.setPassword(resultSet.getString(PASSWORD_COLUMN_NAME));
-            } else {
-                throw new NoSuchElementException();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

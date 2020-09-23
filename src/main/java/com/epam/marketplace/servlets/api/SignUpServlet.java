@@ -1,5 +1,6 @@
 package com.epam.marketplace.servlets.api;
 
+import com.epam.marketplace.exceptions.ValidationException;
 import com.epam.marketplace.models.Credentials;
 import com.epam.marketplace.services.interfaces.CredentialsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +25,11 @@ public class SignUpServlet extends HttpServlet {
                 .reduce("", (accumulator, actual) -> accumulator + actual);
 
         Credentials credentials = new ObjectMapper().readValue(body, Credentials.class);
-        credentialsService.add(credentials);
+        try {
+            credentialsService.add(credentials);
+        } catch (ValidationException e) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            e.printStackTrace();
+        }
     }
 }
