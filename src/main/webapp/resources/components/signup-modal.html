@@ -1,0 +1,48 @@
+<div class="signup-modal-backdrop"></div>
+
+<div class="signup-modal">
+    <div class="signup-modal-img-wrapper">
+        <img src="https://i.pinimg.com/564x/c9/64/dd/c964ddbc43616765ece1f553285c8d94.jpg">
+    </div>
+
+    <div class="signup-modal-content">
+        <div class="modal-close-button-wrapper">
+            <button class="modal-close-button">
+                <span>&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-content-logo">
+            <span class="app-header-logo-online">online</span><span
+                class="app-header-logo-marketplace">marketplace</span>
+        </div>
+
+        <h5 class="signup-modal-content-header">Sign up and begin your treasure hunt.</h5>
+
+        <form class="signup-form">
+            <div class="signup-modal-input-container">
+                <label for="signup-login">Email</label>
+                <input id="signup-login" onkeypress="resetSignUpValidity()" type="text">
+            </div>
+
+            <div class="signup-modal-input-container">
+                <label for="signup-password">Password</label>
+                <input id="signup-password" onkeypress="resetSignUpValidity()" type="password">
+            </div>
+
+            <div class="signup-modal-input-container">
+                <label for="signup-confirm-password">Confirm Password</label>
+                <input id="signup-confirm-password" onkeypress="resetSignUpValidity()" type="password">
+            </div>
+
+            <button type="submit" class="signup-modal-button">Start Now</button>
+
+            <div class="signup-modal-login">
+                <span>Already have an account?</span>
+                <a class="signup-modal-login-a">Log In</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/resources/js/signup-modal.js"></script>
