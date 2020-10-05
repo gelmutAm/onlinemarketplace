@@ -1,12 +1,12 @@
 package com.epam.marketplace.dao.implementations;
 
-import com.epam.marketplace.common.BasicConnectionPool;
 import com.epam.marketplace.common.ConnectionPool;
 import com.epam.marketplace.dao.interfaces.ItemDao;
 import com.epam.marketplace.models.Item;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import javax.inject.Inject;
 import java.sql.*;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -25,10 +25,14 @@ public class ItemDaoImpl implements ItemDao {
     private static final String STOP_DATE_COLUMN_NAME = "stop_date";
     private static final String PICTURE_LINK_COLUMN_NAME = "picture_link";
 
-    private final ConnectionPool connectionPool;
+    private ConnectionPool connectionPool;
 
-    public ItemDaoImpl() throws SQLException {
-        connectionPool = BasicConnectionPool.getInstance();
+    public ItemDaoImpl() {
+    }
+
+    @Inject
+    public ItemDaoImpl(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
     }
 
     @Override

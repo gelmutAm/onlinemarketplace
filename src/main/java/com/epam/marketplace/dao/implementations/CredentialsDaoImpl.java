@@ -1,12 +1,12 @@
 package com.epam.marketplace.dao.implementations;
 
-import com.epam.marketplace.common.BasicConnectionPool;
 import com.epam.marketplace.common.ConnectionPool;
 import com.epam.marketplace.dao.interfaces.CredentialsDao;
 import com.epam.marketplace.models.Credentials;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import javax.inject.Inject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +19,14 @@ public class CredentialsDaoImpl implements CredentialsDao {
     private static final String LOGIN_COLUMN_NAME = "credentials_login";
     private static final String PASSWORD_COLUMN_NAME = "credentials_password";
 
-    private final ConnectionPool connectionPool;
+    private ConnectionPool connectionPool;
 
-    public CredentialsDaoImpl() throws SQLException {
-        connectionPool = BasicConnectionPool.getInstance();
+    public CredentialsDaoImpl() {
+    }
+
+    @Inject
+    public CredentialsDaoImpl(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
     }
 
     @Override

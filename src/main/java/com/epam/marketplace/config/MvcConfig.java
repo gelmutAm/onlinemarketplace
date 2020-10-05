@@ -1,5 +1,7 @@
 package com.epam.marketplace.config;
 
+import com.epam.marketplace.common.BasicConnectionPool;
+import com.epam.marketplace.common.ConnectionPool;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.sql.SQLException;
 
 @Configuration
 @EnableWebMvc
@@ -22,6 +25,11 @@ public class MvcConfig implements WebMvcConfigurer {
     private static final String RESOURCE_HANDLER_PATH_PATTERN = "/static/**";
     private static final String RESOURCE_LOCATION = "/WEB-INF/static/";
 
+
+    @Bean
+    public ConnectionPool getConnectionPool() throws SQLException {
+        return BasicConnectionPool.getInstance();
+    }
 
     @Bean(name = "validator")
     public Validator getBeanValidator() {
