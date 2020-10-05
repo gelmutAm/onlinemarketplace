@@ -140,7 +140,7 @@ function itemBiddingContentBidButtonClick() {
                         price: biddingInput.value
                     };
 
-                    fetch('/api/marketplace/user/bid', {
+                    fetch('/api/marketplace/bid/user', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',

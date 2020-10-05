@@ -1,4 +1,4 @@
-fetch('/api/marketplace/user/bid').then(function (response) {
+fetch('/api/marketplace/bid/user').then(function (response) {
     if (response.ok) {
         response.json().then(function (json) {
             items = json;

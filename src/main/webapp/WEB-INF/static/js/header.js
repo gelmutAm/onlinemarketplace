@@ -3,7 +3,7 @@ $(document).ready(getDropdown);
 let dropdown;
 
 function getDropdown() {
-    $.get('/resources/components/dropdown.html', function (html_string) {
+    $.get('/static/components/dropdown.html', function (html_string) {
         dropdown = html_string;
         headerInit();
     });

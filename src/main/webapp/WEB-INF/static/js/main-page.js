@@ -1,6 +1,6 @@
 var items;
 
-fetch('/api/marketplace/all-items').then(function (response) {
+fetch('/api/marketplace/item/all').then(function (response) {
     if (response.ok) {
         response.json().then(function (json) {
             items = json;
@@ -94,10 +94,14 @@ function convertStopDate(stopDate) {
     let date = new Date(stopDate);
     let today = new Date();
     let result = null;
-    let daysDifference = (date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
+    let daysDifference = Math.trunc((date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
     let minDaysCount = 6;
     if (daysDifference < minDaysCount) {
-        result = Math.trunc(daysDifference) + " " + "Days" + " " + "Left"
+        if (daysDifference > 1) {
+            result = daysDifference + " " + "Days" + " " + "Left";
+        } else {
+            result = daysDifference + " " + "Day" + " " + "Left";
+        }
     } else {
         result = date.toDateString().substr(4, 6);
     }

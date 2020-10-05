@@ -4,13 +4,15 @@ import com.epam.marketplace.common.BasicConnectionPool;
 import com.epam.marketplace.common.ConnectionPool;
 import com.epam.marketplace.dao.interfaces.CredentialsDao;
 import com.epam.marketplace.models.Credentials;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 
-import javax.enterprise.context.ApplicationScoped;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApplicationScoped
+@Repository
+@Primary
 public class CredentialsDaoImpl implements CredentialsDao {
     private static final String TABLE_NAME = "marketplace.credentials";
     private static final String ID_COLUMN_NAME = "credentials_id";

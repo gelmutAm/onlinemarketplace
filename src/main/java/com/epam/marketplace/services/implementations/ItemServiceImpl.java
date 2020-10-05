@@ -4,22 +4,26 @@ import com.epam.marketplace.dao.interfaces.ItemDao;
 import com.epam.marketplace.exceptions.ValidationException;
 import com.epam.marketplace.models.Item;
 import com.epam.marketplace.services.interfaces.ItemService;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Validator;
 import java.util.List;
 
-@ApplicationScoped
+@Service
+@Primary
 public class ItemServiceImpl implements ItemService {
-
-    @Inject
     private ItemDao itemDao;
-
-    @Inject
     private Validator validator;
 
     public ItemServiceImpl() {
+    }
+
+    @Inject
+    public ItemServiceImpl(ItemDao itemDao, Validator validator) {
+        this.itemDao = itemDao;
+        this.validator = validator;
     }
 
     @Override
