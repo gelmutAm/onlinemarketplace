@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * Implementation of the {@code ConnectionPool} interface.
+ */
 public class BasicConnectionPool implements ConnectionPool {
     private static final String URL = "jdbc:postgresql://localhost:5432/marketplace";
     private static final String USER = "root";

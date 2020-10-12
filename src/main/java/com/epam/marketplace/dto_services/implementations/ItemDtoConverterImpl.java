@@ -12,6 +12,9 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the {@code ItemDtoConverter} interface.
+ */
 @Service
 @Primary
 public class ItemDtoConverterImpl implements ItemDtoConverter {

@@ -5,6 +5,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
+/**
+ * Implementation of th {@code UserDetails} interface.
+ */
 public class UserDetailsImpl implements UserDetails {
     private User user;
     private Credentials credentials;

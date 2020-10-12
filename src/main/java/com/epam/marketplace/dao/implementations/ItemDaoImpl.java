@@ -12,6 +12,9 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the {@code ItemDao} interface.
+ */
 @Repository
 @Primary
 public class ItemDaoImpl implements ItemDao {

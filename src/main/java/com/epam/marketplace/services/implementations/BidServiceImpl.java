@@ -13,6 +13,9 @@ import javax.inject.Inject;
 import javax.validation.Validator;
 import java.util.List;
 
+/**
+ * Implementation of the {@code BidService} interface.
+ */
 @Service
 @Primary
 public class BidServiceImpl implements BidService {

@@ -15,6 +15,9 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <code>BidController</code> routes bids requests.
+ */
 @RestController
 @RequestMapping("/api/marketplace/bid/user")
 public class BidController {
@@ -32,6 +35,12 @@ public class BidController {
         this.itemDtoConverter = itemDtoConverter;
     }
 
+    /**
+     * Returns all items converted to {@code ItemDto} associated with user bids.
+     *
+     * @param authentication authentication information about user
+     * @return all items converted to {@code ItemDto} associated with user bids.
+     */
     @GetMapping
     public List<ItemDto> getAllUserBids(Authentication authentication) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
@@ -50,6 +59,12 @@ public class BidController {
         return itemDtos;
     }
 
+    /**
+     * Adds user bid.
+     *
+     * @param authentication authentication information about user
+     * @param bid            bid to be added
+     */
     @PostMapping
     public void makeBid(Authentication authentication, @RequestBody Bid bid) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();

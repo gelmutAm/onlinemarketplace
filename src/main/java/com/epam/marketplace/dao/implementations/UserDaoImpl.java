@@ -11,6 +11,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the {@code UserDao} interface.
+ */
 @Repository
 @Primary
 public class UserDaoImpl implements UserDao {

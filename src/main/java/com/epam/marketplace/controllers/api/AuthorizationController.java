@@ -7,10 +7,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * <code>AuthorizationController</code> routes authorization requests.
+ */
 @RestController
 @RequestMapping("/api/marketplace/authorization")
 public class AuthorizationController {
 
+    /**
+     * Sends the specified {@code HttpServletResponse} status depending on authentication information.
+     *
+     * @param authentication      authentication information about user
+     * @param httpServletResponse response to be sent
+     */
     @GetMapping
     public void getAuthorized(Authentication authentication, HttpServletResponse httpServletResponse) {
         if (authentication == null) {

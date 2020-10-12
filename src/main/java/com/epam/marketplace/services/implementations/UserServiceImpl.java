@@ -11,6 +11,9 @@ import javax.inject.Inject;
 import javax.validation.Validator;
 import java.util.List;
 
+/**
+ * Implementation of the {@code UserService} interface.
+ */
 @Service
 @Primary
 public class UserServiceImpl implements UserService {

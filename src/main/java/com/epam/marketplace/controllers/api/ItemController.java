@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ * <code>ItemController</code> routes items requests.
+ */
 @RestController
 @RequestMapping("/api/marketplace/item")
 public class ItemController {
@@ -27,6 +30,12 @@ public class ItemController {
         this.itemDtoConverter = itemDtoConverter;
     }
 
+    /**
+     * Returns {@code ItemDto} object of the item with the specified id.
+     *
+     * @param itemId item id
+     * @return {@code ItemDto} object of the item with the specified id.
+     */
     @GetMapping("/{itemId}")
     public ItemDto getItemById(@PathVariable int itemId) {
         Item item = itemService.getById(itemId);
@@ -38,6 +47,11 @@ public class ItemController {
         return itemDto;
     }
 
+    /**
+     * Returns all items converted to {@code ItemDto}.
+     *
+     * @return all items converted to {@code ItemDto}.
+     */
     @GetMapping("/all")
     public List<ItemDto> getAllItems() {
         List<Item> items = itemService.getAll();
@@ -45,6 +59,12 @@ public class ItemController {
         return itemDtos;
     }
 
+    /**
+     * Returns all user items converted to {@code ItemDto}.
+     *
+     * @param authentication authentication information about user
+     * @return all user items converted to {@code ItemDto}.
+     */
     @GetMapping("/user")
     public List<ItemDto> getAllUserItems(Authentication authentication) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
@@ -54,6 +74,12 @@ public class ItemController {
         return itemDtos;
     }
 
+    /**
+     * Adds user item.
+     *
+     * @param authentication authentication information about user
+     * @param item           item to be added.
+     */
     @PostMapping("/user")
     public void addUserItem(Authentication authentication, @RequestBody Item item) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();

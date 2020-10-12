@@ -11,6 +11,9 @@ import javax.inject.Inject;
 import javax.validation.Validator;
 import java.util.List;
 
+/**
+ * Implementation of the {@code ItemService} interface.
+ */
 @Service
 @Primary
 public class ItemServiceImpl implements ItemService {

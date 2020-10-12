@@ -11,6 +11,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the {@code BidDao} interface.
+ */
 @Repository
 @Primary
 public class BidDaoImpl implements BidDao {

@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 
+/**
+ * Implementation of the {@code UserDetailsService} interface.
+ */
 @Service
 @Primary
 public class UserDetailsServiceImpl implements UserDetailsService {

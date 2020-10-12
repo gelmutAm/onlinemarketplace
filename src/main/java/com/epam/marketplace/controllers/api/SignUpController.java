@@ -3,14 +3,17 @@ package com.epam.marketplace.controllers.api;
 import com.epam.marketplace.exceptions.ValidationException;
 import com.epam.marketplace.models.Credentials;
 import com.epam.marketplace.services.interfaces.CredentialsService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 
-@RestController
+/**
+ * <code>SignUpController</code> routes sign up requests.
+ */
+@Controller
 @RequestMapping("/api/marketplace/signup")
 public class SignUpController {
     private CredentialsService credentialsService;
@@ -23,6 +26,11 @@ public class SignUpController {
         this.credentialsService = credentialsService;
     }
 
+    /**
+     * Registers user with the specified credentials.
+     *
+     * @param credentials user credentials
+     */
     @PostMapping
     public void addUser(@RequestBody Credentials credentials) {
         try {

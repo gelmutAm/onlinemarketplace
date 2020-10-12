@@ -1,5 +1,8 @@
 package com.epam.marketplace.exceptions;
 
+/**
+ * Custom checked validation exception.
+ */
 public class ValidationException extends Exception {
 
     public ValidationException() {
