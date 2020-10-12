@@ -25,7 +25,6 @@ public class MvcConfig implements WebMvcConfigurer {
     private static final String RESOURCE_HANDLER_PATH_PATTERN = "/static/**";
     private static final String RESOURCE_LOCATION = "/WEB-INF/static/";
 
-
     @Bean
     public ConnectionPool getConnectionPool() throws SQLException {
         return BasicConnectionPool.getInstance();

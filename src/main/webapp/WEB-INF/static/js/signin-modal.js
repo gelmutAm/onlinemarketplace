@@ -13,18 +13,19 @@ $('.signin-form').submit(e => {
 
     debugger
     if (isEmailValid && isPasswordValid) {
-        let credentials = {
-            login: emailInput.value,
-            password : passwordInput.value
-        };
+//        let credentials = {
+//            login: emailInput.value,
+//            password : passwordInput.value
+//        };
+        let credentials = "username=" + emailInput.value + "&password=" + passwordInput.value;
 
-        fetch('/api/marketplace/login', {
+        fetch('/marketplace', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: JSON.stringify(credentials),
+            body: credentials,
+//            body: JSON.stringify(credentials),
         }).then((response) => {
             if (response.ok) {
                 hideModal('.signin-modal-wrapper');

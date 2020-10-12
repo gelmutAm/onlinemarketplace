@@ -1,23 +1,25 @@
 package com.epam.marketplace.config;
 
-import com.epam.marketplace.services.implementations.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
+import javax.inject.Inject;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private UserDetailsService userDetailsService;
 
-    @Bean
-    public UserDetailsService getUserDetailsService() {
-        return new UserDetailsServiceImpl();
+    @Inject
+    public SecurityConfig(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
     }
 
     @Bean
@@ -26,20 +28,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public DaoAuthenticationProvider getAuthenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(getUserDetailsService());
-        authenticationProvider.setPasswordEncoder(getPasswordEncoder());
-        return authenticationProvider;
+    public AuthenticationFailureHandler getAuthenticationFailureHandler() {
+        return new AuthenticationFailureHandlerImpl();
     }
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(getAuthenticationProvider());
+        auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/static/**", "/api/marketplace/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/marketplace")
+                .failureHandler(getAuthenticationFailureHandler())
+                .defaultSuccessUrl("/marketplace")
+                .permitAll()
+                .and()
+                .csrf().disable();
     }
 }
+

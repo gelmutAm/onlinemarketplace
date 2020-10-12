@@ -13,15 +13,15 @@
 
         <h5 class="signin-modal-content-header">Log in to begin your treasure hunt.</h5>
 
-        <form class="signin-form">
+        <form class="signin-form" action="/marketplace" method="post">
             <div class="signin-modal-input-container">
                 <label for="signin-login">Login</label>
-                <input id="signin-login" onkeypress="resetLoginValidity()">
+                <input name="username" id="signin-login" onkeypress="resetLoginValidity()">
             </div>
 
             <div class="signin-modal-input-container">
                 <label for="signin-password">Password</label>
-                <input id="signin-password" onkeypress="resetLoginValidity()" type="password">
+                <input name="password" id="signin-password" onkeypress="resetLoginValidity()" type="password">
             </div>
 
             <button type="submit" class="signin-modal-button">Log In</button>

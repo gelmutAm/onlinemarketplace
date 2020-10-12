@@ -131,7 +131,7 @@ function itemBiddingContentBidButtonClick() {
         const isPriceValid = PRICE_REGEX.test(biddingInput.value);
 
         fetch('/api/marketplace/authorization', {
-            method: 'POST'
+            method: 'GET'
         }).then((response) => {
             if (response.ok) {
                 if (isPriceValid && biddingInput.value > item.currentPrice) {

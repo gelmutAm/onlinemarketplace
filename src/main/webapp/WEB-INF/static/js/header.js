@@ -13,8 +13,9 @@ function headerInit() {
     const buttonContainerSelector = '.app-header-buttons-container';
     $(buttonContainerSelector).children().remove();
     fetch('/api/marketplace/authorization', {
-        method: 'POST',
+        method: 'GET',
     }).then((response) => {
+    debugger
         if (response.ok) {
             $(buttonContainerSelector).append(dropdown);
         } else {

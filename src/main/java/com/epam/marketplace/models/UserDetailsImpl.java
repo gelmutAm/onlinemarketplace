@@ -6,9 +6,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 public class UserDetailsImpl implements UserDetails {
+    private User user;
     private Credentials credentials;
 
-    public UserDetailsImpl(Credentials credentials) {
+    public UserDetailsImpl(User user, Credentials credentials) {
+        this.user = user;
         this.credentials = credentials;
     }
 
@@ -47,7 +49,15 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
-    public Credentials getUserDetails() {
+    public UserDetailsImpl getUserDetails() {
+        return this;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Credentials getCredentials() {
         return credentials;
     }
 }

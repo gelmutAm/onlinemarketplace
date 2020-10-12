@@ -4,11 +4,12 @@ import com.epam.marketplace.dto.ItemDto;
 import com.epam.marketplace.dto_services.interfaces.ItemDtoConverter;
 import com.epam.marketplace.exceptions.ValidationException;
 import com.epam.marketplace.models.Item;
+import com.epam.marketplace.models.UserDetailsImpl;
 import com.epam.marketplace.services.interfaces.ItemService;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,11 @@ public class ItemController {
     @GetMapping("/{itemId}")
     public ItemDto getItemById(@PathVariable int itemId) {
         Item item = itemService.getById(itemId);
-        ItemDto itemDto = itemDtoConverter.itemToDto(item);
+        ItemDto itemDto = null;
+        if (item != null) {
+            itemDto = itemDtoConverter.itemToDto(item);
+        }
+
         return itemDto;
     }
 
@@ -41,16 +46,18 @@ public class ItemController {
     }
 
     @GetMapping("/user")
-    public List<ItemDto> getAllUserItems(HttpSession httpSession) {
-        int userId = Integer.parseInt(httpSession.getAttribute("userId").toString());
+    public List<ItemDto> getAllUserItems(Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        int userId = userDetails.getUser().getId();
         List<Item> items = itemService.getAllBySellerId(userId);
         List<ItemDto> itemDtos = itemDtoConverter.allItemsToDtos(items);
         return itemDtos;
     }
 
     @PostMapping("/user")
-    public void addUserItem(@RequestBody Item item, HttpSession httpSession) {
-        int userId = Integer.parseInt(httpSession.getAttribute("userId").toString());
+    public void addUserItem(Authentication authentication, @RequestBody Item item) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        int userId = userDetails.getUser().getId();
         item.setSellerId(userId);
         item.setCurrentPrice(item.getStartPrice());
         try {
