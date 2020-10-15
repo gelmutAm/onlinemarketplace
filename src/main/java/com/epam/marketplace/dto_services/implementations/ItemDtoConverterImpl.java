@@ -5,23 +5,29 @@ import com.epam.marketplace.dto_services.interfaces.ItemDtoConverter;
 import com.epam.marketplace.models.Item;
 import com.epam.marketplace.services.interfaces.BidService;
 import com.epam.marketplace.services.interfaces.UserService;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApplicationScoped
+/**
+ * Implementation of the {@code ItemDtoConverter} interface.
+ */
+@Service
+@Primary
 public class ItemDtoConverterImpl implements ItemDtoConverter {
-
-    @Inject
     private UserService userService;
-
-    @Inject
     private BidService bidService;
 
-
     public ItemDtoConverterImpl() {
+    }
+
+    @Inject
+    public ItemDtoConverterImpl(UserService userService, BidService bidService) {
+        this.userService = userService;
+        this.bidService = bidService;
     }
 
     public ItemDto itemToDto(Item item) {

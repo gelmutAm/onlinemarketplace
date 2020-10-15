@@ -6,25 +6,31 @@ import com.epam.marketplace.models.Bid;
 import com.epam.marketplace.models.Item;
 import com.epam.marketplace.services.interfaces.BidService;
 import com.epam.marketplace.services.interfaces.ItemService;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Validator;
 import java.util.List;
 
-@ApplicationScoped
+/**
+ * Implementation of the {@code BidService} interface.
+ */
+@Service
+@Primary
 public class BidServiceImpl implements BidService {
-
-    @Inject
     private BidDao bidDao;
-
-    @Inject
     private ItemService itemService;
-
-    @Inject
     private Validator validator;
 
     public BidServiceImpl() {
+    }
+
+    @Inject
+    public BidServiceImpl(BidDao bidDao, ItemService itemService, Validator validator) {
+        this.bidDao = bidDao;
+        this.itemService = itemService;
+        this.validator = validator;
     }
 
     @Override

@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+/**
+ * Implementation of the  {@code Connection} interface.
+ */
 public class ConnectionImpl implements Connection {
     private ConnectionPool connectionPool;
     private Connection connection;

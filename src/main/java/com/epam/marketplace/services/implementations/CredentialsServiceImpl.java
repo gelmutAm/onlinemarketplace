@@ -6,30 +6,41 @@ import com.epam.marketplace.models.Credentials;
 import com.epam.marketplace.models.User;
 import com.epam.marketplace.services.interfaces.CredentialsService;
 import com.epam.marketplace.services.interfaces.UserService;
+import org.springframework.context.annotation.Primary;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Validator;
 import java.util.List;
 
-@ApplicationScoped
+/**
+ * Implementation of the {@code CredentialsService} interface.
+ */
+@Service
+@Primary
 public class CredentialsServiceImpl implements CredentialsService {
-
-    @Inject
     private CredentialsDao credentialsDao;
-
-    @Inject
     private UserService userService;
-
-    @Inject
     private Validator validator;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public CredentialsServiceImpl() {
+    }
+
+    @Inject
+    public CredentialsServiceImpl(CredentialsDao credentialsDao, UserService userService,
+                                  Validator validator, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.credentialsDao = credentialsDao;
+        this.userService = userService;
+        this.validator = validator;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
     public void add(Credentials credentials) throws ValidationException {
         if (validator.validate(credentials).isEmpty()) {
+            credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));
             credentialsDao.add(credentials);
             int credentialsId = getByLogin(credentials.getLogin()).getId();
             User user = new User();

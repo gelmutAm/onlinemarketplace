@@ -1,5 +1,8 @@
 package com.epam.marketplace.dto;
 
+/**
+ * Item Data Transfer Object implementation.
+ */
 public class ItemDto {
     private int id;
     private String seller;

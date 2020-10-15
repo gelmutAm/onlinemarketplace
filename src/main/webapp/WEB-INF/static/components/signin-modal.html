@@ -1,0 +1,37 @@
+<div class="signin-modal-backdrop"></div>
+<div class="signin-modal">
+    <img src="https://i.pinimg.com/564x/9b/88/a3/9b88a3ba150a71181db5707d36e51eaf.jpg" width="282" height="462">
+    <div class="signin-modal-content">
+        <div class="modal-close-button-wrapper">
+            <button class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-content-logo">
+            <span class="app-header-logo-online">online</span><span
+                class="app-header-logo-marketplace">marketplace</span>
+        </div>
+
+        <h5 class="signin-modal-content-header">Log in to begin your treasure hunt.</h5>
+
+        <form class="signin-form" action="/marketplace" method="post">
+            <div class="signin-modal-input-container">
+                <label for="signin-login">Login</label>
+                <input name="username" id="signin-login" onkeypress="resetLoginValidity()">
+            </div>
+
+            <div class="signin-modal-input-container">
+                <label for="signin-password">Password</label>
+                <input name="password" id="signin-password" onkeypress="resetLoginValidity()" type="password">
+            </div>
+
+            <button type="submit" class="signin-modal-button">Log In</button>
+
+            <div class="signin-modal-create-account">
+                <span>Don't have an account?</span>
+                <a class="signin-modal-create-account-a">Join</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/static/js/signin-modal.js"></script>

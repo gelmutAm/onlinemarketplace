@@ -1,16 +1,21 @@
 package com.epam.marketplace.dao.implementations;
 
-import com.epam.marketplace.common.BasicConnectionPool;
 import com.epam.marketplace.common.ConnectionPool;
 import com.epam.marketplace.dao.interfaces.BidDao;
 import com.epam.marketplace.models.Bid;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApplicationScoped
+/**
+ * Implementation of the {@code BidDao} interface.
+ */
+@Repository
+@Primary
 public class BidDaoImpl implements BidDao {
     private static final String TABLE_NAME = "marketplace.bids";
     private static final String ID_COLUMN_NAME = "bid_id";
@@ -18,10 +23,14 @@ public class BidDaoImpl implements BidDao {
     private static final String ITEM_ID_COLUMN_NAME = "item_id";
     private static final String PRICE_COLUMN_NAME = "bid_price";
 
-    private final ConnectionPool connectionPool;
+    private ConnectionPool connectionPool;
 
-    public BidDaoImpl() throws SQLException {
-        connectionPool = BasicConnectionPool.getInstance();
+    public BidDaoImpl() {
+    }
+
+    @Inject
+    public BidDaoImpl(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
     }
 
     @Override

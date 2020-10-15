@@ -1,16 +1,21 @@
 package com.epam.marketplace.dao.implementations;
 
-import com.epam.marketplace.common.BasicConnectionPool;
 import com.epam.marketplace.common.ConnectionPool;
 import com.epam.marketplace.dao.interfaces.UserDao;
 import com.epam.marketplace.models.User;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApplicationScoped
+/**
+ * Implementation of the {@code UserDao} interface.
+ */
+@Repository
+@Primary
 public class UserDaoImpl implements UserDao {
     private static final String TABLE_NAME = "marketplace.users";
     private static final String ID_COLUMN_NAME = "user_id";
@@ -18,10 +23,14 @@ public class UserDaoImpl implements UserDao {
     private static final String SURNAME_COLUMN_NAME = "user_surname";
     private static final String CREDENTIALS_ID_COLUMN_NAME = "credentials_id";
 
-    private final ConnectionPool connectionPool;
+    private ConnectionPool connectionPool;
 
-    public UserDaoImpl() throws SQLException {
-        connectionPool = BasicConnectionPool.getInstance();
+    public UserDaoImpl() {
+    }
+
+    @Inject
+    public UserDaoImpl(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
     }
 
     @Override

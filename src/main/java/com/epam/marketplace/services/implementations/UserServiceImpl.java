@@ -4,22 +4,29 @@ import com.epam.marketplace.dao.interfaces.UserDao;
 import com.epam.marketplace.exceptions.ValidationException;
 import com.epam.marketplace.models.User;
 import com.epam.marketplace.services.interfaces.UserService;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Validator;
 import java.util.List;
 
-@ApplicationScoped
+/**
+ * Implementation of the {@code UserService} interface.
+ */
+@Service
+@Primary
 public class UserServiceImpl implements UserService {
-
-    @Inject
     private UserDao userDao;
-
-    @Inject
     private Validator validator;
 
     public UserServiceImpl() {
+    }
+
+    @Inject
+    public UserServiceImpl(UserDao userDao, Validator validator) {
+        this.userDao = userDao;
+        this.validator = validator;
     }
 
     @Override

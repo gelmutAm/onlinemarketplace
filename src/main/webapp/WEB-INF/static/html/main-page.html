@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Marketplace</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(".app-header-wrapper").load("/static/components/header.html");
+            $(".footer-wrapper").load("/static/components/footer.html");
+            $(".signin-modal-wrapper").load("/static/components/signin-modal.html");
+            $(".signup-modal-wrapper").load("/static/components/signup-modal.html");
+        });
+    </script>
+</head>
+
+<body class="app">
+    <div class="app-header-wrapper"></div>
+
+    <div class="banner">
+        <img src="https://images.pexels.com/photos/3683194/pexels-photo-3683194.jpeg">
+    </div>
+
+    <div class="content-wrapper">
+        <div class="content">
+            <h2 class="main-page-content-header">Trending Items</h2>
+
+            <div class="item-cards-wrapper"></div>
+
+        </div>
+    </div>
+
+    <div class="signin-modal-wrapper"></div>
+
+    <div class="signup-modal-wrapper"></div>
+
+    <div class="footer-wrapper"></div>
+
+    <script src="/static/js/main-page.js"></script>
+
+</body>
+
+</html>
