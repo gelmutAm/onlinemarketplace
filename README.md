@@ -9,7 +9,7 @@ Marketplace web-application.
 # Installation
 Windows:
 ```
-git clone https://git.epam.com/anastasiia_gelmut/onlinemarketplace.git
+git clone https://github.com/gelmutAm/onlinemarketplace.git
 cd onlinemarketplace
 mvn package
 [PATH_TO_WILDFLY]/bin/jboss-cli.bat -c
